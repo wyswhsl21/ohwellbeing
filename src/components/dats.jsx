@@ -6,7 +6,8 @@ export default function Dats() {
     <>
       <Title>모두의 OH-WELL-DAT (모두의 웰빙 댓글)</Title>
       <Boxes>
-        <span>오늘 나의 웰빙식단! 고구마1개 닭가슴살100g 우유1컵</span>
+        <span>오늘 나의 웰빙식단!</span>
+        <p>작성자:호잇</p>
         <p>자세히보기 -> 링크로 설정예정</p>
         <button> 🗑️</button>
       </Boxes>

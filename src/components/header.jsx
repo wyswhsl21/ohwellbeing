@@ -8,6 +8,7 @@ export default function Header() {
         <FstButton>🏠</FstButton>
         <SedSpan>OH - WELL</SedSpan>
       </HeadDiv>
+      <hr />
     </>
   );
 }
