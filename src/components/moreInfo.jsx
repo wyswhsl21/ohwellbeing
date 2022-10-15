@@ -5,11 +5,18 @@ export default function MoreInfo() {
   return (
     <>
       <InfoBox>
-        <p>2022.10.15 오후9:20</p>
-        <span>이전으로->링크설정예정</span>
-        <h2>오늘 나의 웰빙식단!</h2>
-        <h4>고구마1개 닭가슴살100g 우유1컵</h4>
-        <button>수정하기</button>
+        <div>
+          <div>
+            <span>이전으로->링크설정예정</span>
+          </div>
+
+          <p>2022.10.15 오후9:20</p>
+          <h2>오늘 나의 웰빙식단!</h2>
+          <h4>고구마1개 닭가슴살100g 우유1컵</h4>
+        </div>
+        <div>
+          <button>수정하기</button>
+        </div>
       </InfoBox>
       <hr />
       <h3>눌러서댓글보기</h3>
@@ -35,6 +42,9 @@ export default function MoreInfo() {
     </>
   );
 }
+const Wrap = styled.div`
+  display: flex;
+`;
 
 const InfoBox = styled.div`
   border: 2px solid olive;
@@ -44,6 +54,9 @@ const InfoBox = styled.div`
   height: 300px;
   margin: 100px auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   h3 {
     margin: 10px;
   }
