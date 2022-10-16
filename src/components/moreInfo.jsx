@@ -1,40 +1,71 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import useInput from "../hooks/useInput";
 
-export default function MoreInfo() {
+const MoreInfo = () => {
+  const [dadat, dadatChangeHandler] = useInput();
+
   return (
     <>
       <InfoBox>
-        <p>2022.10.15 오후9:20</p>
-        <span>이전으로->링크설정예정</span>
-        <h2>오늘 나의 웰빙식단!</h2>
-        <h4>고구마1개 닭가슴살100g 우유1컵</h4>
-        <button>수정하기</button>
-      </InfoBox>
-      <hr />
-      <h3>눌러서댓글보기</h3>
-      <hr />
-      <CommentBox>
         <div>
-          <input type="text" />
-          <input type="text" />
-        </div>
+          <div>
+            <Link to={"/"}>이전으로</Link>
+          </div>
 
-        <button>추가하기</button>
-      </CommentBox>
-      <NewComment>
-        <div>
-          <span>닉네임</span>
-          <p>댓글남겨주세용</p>
+          <p>2022.10.15 오후9:20</p>
+          <h2>오늘 나의 웰빙식단!</h2>
+          <h4>고구마1개 닭가슴살100g 우유1컵</h4>
         </div>
         <div>
           <button>수정하기</button>
-          <button>삭제</button>
         </div>
-      </NewComment>
+      </InfoBox>
+      <DadatBox>
+        <hr />
+        <h3>눌러서댓글보기</h3>
+        <hr />
+        <CommentBox>
+          <div>
+            <NickName>
+              이름 :
+              <input
+                type="text"
+                placeholder="5글자이하"
+                name="nickname"
+                value={dadat.nickname}
+                onChange={dadatChangeHandler}
+              />
+            </NickName>
+            <Dadat>
+              내용 :
+              <input
+                type="text"
+                placeholder="20글자이하"
+                name="memo"
+                value={dadat.memo}
+                onChange={dadatChangeHandler}
+              />
+            </Dadat>
+          </div>
+          <button>추가하기</button>
+        </CommentBox>
+        <NewComment>
+          <div>
+            <span>닉네임</span>
+            <p>댓글남겨주세용</p>
+          </div>
+          <div>
+            <button>수정하기</button>
+            <button>삭제</button>
+          </div>
+        </NewComment>
+      </DadatBox>
     </>
   );
-}
+};
+export default MoreInfo;
 
 const InfoBox = styled.div`
   border: 2px solid olive;
@@ -44,6 +75,9 @@ const InfoBox = styled.div`
   height: 300px;
   margin: 100px auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   h3 {
     margin: 10px;
   }
@@ -58,11 +92,25 @@ const InfoBox = styled.div`
     background-color: transparent;
   }
 `;
+const DadatBox = styled.div`
+  max-width: 1500px;
+  width: 85%;
+  margin: auto;
+`;
 const CommentBox = styled.div`
-  margin: 10px;
+  margin: 30px auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  button {
+    background-color: transparent;
+    border-radius: 15px;
+  }
 `;
 
 const NewComment = styled.div`
@@ -70,5 +118,17 @@ const NewComment = styled.div`
   flex-direction: row;
   justify-content: space-between;
   border: 1px solid gray;
-  margin: 10px;
+  margin: 30px auto 80px auto;
+`;
+const NickName = styled.div`
+  input {
+    margin-left: 8px;
+  }
+`;
+const Dadat = styled.div`
+  margin-left: 8px;
+  input {
+    margin-left: 8px;
+    width: 500px;
+  }
 `;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Header() {
+const Header = () => {
   return (
     <>
       <HeadDiv>
@@ -11,7 +11,8 @@ export default function Header() {
       <hr />
     </>
   );
-}
+};
+export default Header;
 
 const HeadDiv = styled.div`
   display: flex;
