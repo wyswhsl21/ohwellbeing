@@ -1,13 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import useInput from "../hooks/useInput";
 
-export default function MoreInfo() {
+const MoreInfo = () => {
+  const [dadat, dadatChangeHandler] = useInput();
+
   return (
     <>
       <InfoBox>
         <div>
           <div>
-            <span>이전으로->링크설정예정</span>
+            <Link to={"/"}>이전으로</Link>
           </div>
 
           <p>2022.10.15 오후9:20</p>
@@ -18,33 +22,50 @@ export default function MoreInfo() {
           <button>수정하기</button>
         </div>
       </InfoBox>
-      <hr />
-      <h3>눌러서댓글보기</h3>
-      <hr />
-      <CommentBox>
-        <div>
-          <input type="text" />
-          <input type="text" />
-        </div>
-
-        <button>추가하기</button>
-      </CommentBox>
-      <NewComment>
-        <div>
-          <span>닉네임</span>
-          <p>댓글남겨주세용</p>
-        </div>
-        <div>
-          <button>수정하기</button>
-          <button>삭제</button>
-        </div>
-      </NewComment>
+      <DadatBox>
+        <hr />
+        <h3>눌러서댓글보기</h3>
+        <hr />
+        <CommentBox>
+          <div>
+            <NickName>
+              이름 :
+              <input
+                type="text"
+                placeholder="5글자이하"
+                name="nickname"
+                value={dadat.nickname}
+                onChange={dadatChangeHandler}
+              />
+            </NickName>
+            <Dadat>
+              내용 :
+              <input
+                type="text"
+                placeholder="20글자이하"
+                name="memo"
+                value={dadat.memo}
+                onChange={dadatChangeHandler}
+              />
+            </Dadat>
+          </div>
+          <button>추가하기</button>
+        </CommentBox>
+        <NewComment>
+          <div>
+            <span>닉네임</span>
+            <p>댓글남겨주세용</p>
+          </div>
+          <div>
+            <button>수정하기</button>
+            <button>삭제</button>
+          </div>
+        </NewComment>
+      </DadatBox>
     </>
   );
-}
-const Wrap = styled.div`
-  display: flex;
-`;
+};
+export default MoreInfo;
 
 const InfoBox = styled.div`
   border: 2px solid olive;
@@ -71,11 +92,25 @@ const InfoBox = styled.div`
     background-color: transparent;
   }
 `;
+const DadatBox = styled.div`
+  max-width: 1500px;
+  width: 85%;
+  margin: auto;
+`;
 const CommentBox = styled.div`
-  margin: 10px;
+  margin: 30px auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  button {
+    background-color: transparent;
+    border-radius: 15px;
+  }
 `;
 
 const NewComment = styled.div`
@@ -83,5 +118,17 @@ const NewComment = styled.div`
   flex-direction: row;
   justify-content: space-between;
   border: 1px solid gray;
-  margin: 10px;
+  margin: 30px auto 80px auto;
+`;
+const NickName = styled.div`
+  input {
+    margin-left: 8px;
+  }
+`;
+const Dadat = styled.div`
+  margin-left: 8px;
+  input {
+    margin-left: 8px;
+    width: 500px;
+  }
 `;

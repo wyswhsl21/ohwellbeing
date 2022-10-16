@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function Dats() {
+const Dats = () => {
   return (
     <>
       <Title>모두의 OH-WELL-DAT (모두의 웰빙 댓글)</Title>
@@ -13,7 +13,8 @@ export default function Dats() {
       </Boxes>
     </>
   );
-}
+};
+export default Dats;
 
 const Title = styled.div`
   font-weight: 600;
