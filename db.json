@@ -1,19 +1,10 @@
 {
-  "posts": [
+  "ohwell": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "샐러드",
+      "nickname": "테스트",
+      "memo": "테스트 입니다 :)"
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

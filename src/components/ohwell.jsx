@@ -1,12 +1,26 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const OhWell = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <Nav>
-        <Ohbox>오식(oh~sik)</Ohbox>
-        <Ohbox>오댓(oh~dat)</Ohbox>
+        <Ohbox
+          onClick={() => {
+            navigate("/ohsik");
+          }}
+        >
+          오식(oh~sik)
+        </Ohbox>
+        <Ohbox
+          onClick={() => {
+            navigate("/alldat");
+          }}
+        >
+          오댓(oh~dat)
+        </Ohbox>
       </Nav>
       <div>
         <div>그림</div>
