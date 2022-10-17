@@ -1,11 +1,19 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <>
       <HeadDiv>
-        <FstButton>🏠</FstButton>
+        <FstButton
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          🏠
+        </FstButton>
         <SedSpan>OH - WELL</SedSpan>
       </HeadDiv>
       <hr />

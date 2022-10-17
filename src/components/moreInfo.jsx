@@ -11,7 +11,7 @@ const MoreInfo = () => {
       <InfoBox>
         <div>
           <div>
-            <Link to={"/"}>이전으로</Link>
+            <Link to={"/alldat"}>이전으로</Link>
           </div>
 
           <p>2022.10.15 오후9:20</p>

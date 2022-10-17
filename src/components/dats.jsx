@@ -1,11 +1,22 @@
 import React from "react";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+>>>>>>> d609675ef9cc3a43b8b249ea34b120dcc52df238
 import styled from "styled-components";
 
 const Dats = () => {
+  //hook 정리
+  const navigate = useNavigate();
+  const ohwell = useSelector((state) => state.ohsik.ohwells);
+  console.log(ohwell);
+
   return (
     <>
       <Title>모두의 OH-WELL-DAT (모두의 웰빙 댓글)</Title>
+<<<<<<< HEAD
       <Boxes>
         <span>오늘 나의 웰빙식단!</span>
         <p>작성자:호잇</p>
@@ -14,6 +25,19 @@ const Dats = () => {
         </div>
         <button> 🗑️</button>
       </Boxes>
+=======
+
+      {ohwell.map((ohwell) => {
+        return (
+          <Boxes onClick={() => navigate("/info")}>
+            <span>{ohwell.title}</span>
+            <p>작성자:{ohwell.nickname}</p>
+            <p>자세히보기 -> 링크로 설정예정</p>
+            <button> 🗑️</button>
+          </Boxes>
+        );
+      })}
+>>>>>>> d609675ef9cc3a43b8b249ea34b120dcc52df238
     </>
   );
 };
@@ -33,6 +57,7 @@ const Boxes = styled.div`
   height: 50px;
   margin: 30px 20px;
   padding: 10px;
+  cursor: pointer;
 
   display: flex;
   flex-direction: row;
