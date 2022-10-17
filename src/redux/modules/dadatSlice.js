@@ -1,18 +1,38 @@
 // 눌러서 댓글보기페이지
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-// import { dadatApi } from "../../mytools/instance";
+import { dadatApi } from "../../mytools/instance";
 
 // thunk 함수
 
-export const _getDadat = createAsyncThunk(
+export const __postDadat = createAsyncThunk(
+  "dadats/postDadat",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await dadatApi.postDadat(payload);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const __getDadat = createAsyncThunk(
   "dadats/getDadat",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get(
-        `http://localhost:3001/dadats/${payload}`
-      );
+      const { data } = await dadatApi.getDadat(payload);
+      console.log(data);
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const __deleteDadat = createAsyncThunk(
+  "dadats/deletDadat",
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await dadatApi.deleteDadat(payload);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -24,8 +44,8 @@ const initialState = {
   dadats: [
     {
       id: 0,
-      nickname: "s",
-      memo: "s",
+      nickname: "",
+      memo: "",
     },
   ],
   isLoading: false,
@@ -35,16 +55,43 @@ const initialState = {
 export const dadatSlice = createSlice({
   name: "dadats",
   initialState,
-  //   reducers: {},
+  // reducers: {},
   extraReducers: {
-    [_getDadat.pending]: (state) => {
+    //  POST DADATS!!! 대댓글 추가하기!!
+    [__postDadat.pending]: (state) => {
       state.isLoading = true;
     },
-    [_getDadat.fulfilled]: (state, action) => {
+    [__postDadat.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.dadat = action.payload;
+      state.dadats.push(action.payload);
+      console.log("fulfilled 상태", state, action);
     },
-    [_getDadat.rejected]: (state, action) => {
+    [__postDadat.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    // GET DADATS!!! 대댓글 보여주기!
+    [__getDadat.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__getDadat.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.dadats = action.payload;
+      console.log("fulfilled 상태", action.payload);
+    },
+    [__getDadat.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    // DELET DADATS!!! 대댓글 지우기!!!
+    [__deleteDadat.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__deleteDadat.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      console.log("fulfilled 상태", state, action);
+    },
+    [__deleteDadat.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
