@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
+=======
+import React, { useState } from "react";
+>>>>>>> 44bd29a3694df328e3b7b001008cd18ffbeb9938
 import styled from "styled-components";
 import {
   __deleteDadat,
@@ -37,6 +41,11 @@ const EditDadat = () => {
     }
   };
 
+<<<<<<< HEAD
+=======
+const EditDadat = ({ dadats, setDadats }) => {
+  // console.log(dadats);
+>>>>>>> 44bd29a3694df328e3b7b001008cd18ffbeb9938
   const [newDadat, setNewDadat] = useState({
     memo: "",
   });

@@ -14,7 +14,7 @@ const Dats = () => {
   //useEffect 정리
   useEffect(() => {
     dispatch(__getOhwell());
-  }, [dispatch]);
+  }, []);
   //handler 정리
   const onDeleteClickhandler = (id) => {
     const result = window.confirm("정말로 삭제 하시겠습니까?");

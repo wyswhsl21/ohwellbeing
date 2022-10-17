@@ -3,6 +3,7 @@
     {
       "title": "ㅁㅁㅁ",
       "nickname": "ㅁㅁㅁ",
+<<<<<<< HEAD
       "memo": "ㅁㅁㅁㅁ",
       "id": 1
     },
@@ -11,10 +12,16 @@
       "nickname": "ㅋㅋㅋ",
       "memo": "ㅋㅋㅋㅋㅋ",
       "id": 2
+=======
+      "memo": "ㅋ",
+      "id": 1,
+      "hhhhh": ""
+>>>>>>> 44bd29a3694df328e3b7b001008cd18ffbeb9938
     },
     {
       "title": "ㅋㅋㅋㅋㅋ",
       "nickname": "ㅋㅋㅋㅋ",
+<<<<<<< HEAD
       "memo": "ㅋㅋㅋㅋㅋ",
       "id": 4
     },
@@ -23,6 +30,10 @@
       "nickname": "ㄻㄴㅇㄻㅈㅇㄴㄹ",
       "memo": "ㅇㄴㅁㄻㄴㅇㄹ",
       "id": 9
+=======
+      "memo": "ㅋㅋㅋㅋ",
+      "id": 2
+>>>>>>> 44bd29a3694df328e3b7b001008cd18ffbeb9938
     }
   ],
   "dadats": [
@@ -37,8 +48,13 @@
       "id": 3
     },
     {
+<<<<<<< HEAD
       "nickname": "ddddd",
       "memo": "ddddd",
+=======
+      "nickname": "테스트",
+      "memo": "테스트 하기",
+>>>>>>> 44bd29a3694df328e3b7b001008cd18ffbeb9938
       "id": 4
     }
   ]

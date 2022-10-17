@@ -50,7 +50,7 @@ export const __deleteOhwell = createAsyncThunk(
     try {
       const data = await ohwellApi.deleteOhwell(payload);
       console.log(data);
-      return thunkAPI.fulfillWithValue(data);
+      return thunkAPI.fulfillWithValue(payload);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -110,10 +110,10 @@ const ohsikSlice = createSlice({
     },
     [__deleteOhwell.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.ohwells.filter((item) => item.id !== action.payload);
 
       console.log("fulfilled 상태", state, action);
-
-      // state.ohwells = state, action.payload;
+      return state;
     },
     [__deleteOhwell.rejected]: (state, action) => {
       state.isLoading = false;
