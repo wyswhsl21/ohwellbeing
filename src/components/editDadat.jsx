@@ -7,32 +7,32 @@ const EditDadat = ({ dadats, setDadats }) => {
   const [newDadat, setNewDadat] = useState({
     memo: "",
   });
-  const newDadatChangeHandler = (event) => {
-    // if (mydadatId === )
-    console.log(event);
-    setNewDadat({ ...newDadat, memo: event.target.value });
-  };
-  // 수정된값으로 변경하여 저장 patch
-  const newDadatEditHandler = async (mydadats) => {
-    // if (mydadats.memo.trim() === "") return;
-    const editDadat = await axios.patch(
-      `http://localhost:3001/dadats/${mydadats.id}`,
-      mydadats
-    );
-    const refresh = dadats.map((mynewdadats) => {
-      if (mynewdadats.id === mydadats.id) {
-        return {
-          ...mynewdadats,
-          memo: editDadat.data.memo,
-        };
-      }
-      return mynewdadats;
-    });
-    setDadats(refresh);
-    setNewDadat({
-      memo: "",
-    });
-  };
+  // const newDadatChangeHandler = (event) => {
+  //   // if (mydadatId === )
+  //   console.log(event);
+  //   setNewDadat({ ...newDadat, memo: event.target.value });
+  // };
+  // // 수정된값으로 변경하여 저장 patch
+  // const newDadatEditHandler = async (mydadats) => {
+  //   // if (mydadats.memo.trim() === "") return;
+  //   const editDadat = await axios.patch(
+  //     `http://localhost:3001/dadats/${mydadats.id}`,
+  //     mydadats
+  //   );
+  //   const refresh = dadats.map((mynewdadats) => {
+  //     if (mynewdadats.id === mydadats.id) {
+  //       return {
+  //         ...mynewdadats,
+  //         memo: editDadat.data.memo,
+  //       };
+  //     }
+  //     return mynewdadats;
+  //   });
+  //   setDadats(refresh);
+  //   setNewDadat({
+  //     memo: "",
+  //   });
+  // };
   return (
     <>
       <DadatBox>

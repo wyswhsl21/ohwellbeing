@@ -24,8 +24,8 @@ const initialState = {
   dadats: [
     {
       id: 0,
-      nickname: "",
-      memo: "",
+      nickname: "s",
+      memo: "s",
     },
   ],
   isLoading: false,

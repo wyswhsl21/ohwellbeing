@@ -110,7 +110,7 @@ const MoreInfo = () => {
         <NewComment>
           {dadats?.map((mydadats) => (
             <div key={mydadats.id}>
-              {/* 대댓 입력상태 */}
+              {/* 대댓 입력상태__ */}
               <div>
                 <span>{mydadats.nickname}</span>
                 <p>{mydadats.memo}</p>
