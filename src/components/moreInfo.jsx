@@ -26,7 +26,7 @@ const MoreInfo = () => {
         <hr />
         <h3>눌러서댓글보기</h3>
         <hr />
-        <CommentBox>
+        <CommentBox onSubmit={dadatSubmitHandler}>
           <div>
             <NickName>
               이름 :
