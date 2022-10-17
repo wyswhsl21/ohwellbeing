@@ -97,7 +97,7 @@ const DadatBox = styled.div`
   width: 85%;
   margin: auto;
 `;
-const CommentBox = styled.div`
+const CommentBox = styled.form`
   margin: 30px auto;
   display: flex;
   flex-direction: row;

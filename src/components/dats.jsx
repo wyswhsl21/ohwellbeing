@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Dats = () => {
@@ -8,7 +9,9 @@ const Dats = () => {
       <Boxes>
         <span>오늘 나의 웰빙식단!</span>
         <p>작성자:호잇</p>
-        <p>자세히보기 -> 링크로 설정예정</p>
+        <div>
+          <Link to={"/info"}>자세히보기</Link>
+        </div>
         <button> 🗑️</button>
       </Boxes>
     </>
