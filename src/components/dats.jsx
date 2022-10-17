@@ -1,10 +1,6 @@
 import React from "react";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
-=======
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
->>>>>>> d609675ef9cc3a43b8b249ea34b120dcc52df238
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Dats = () => {
@@ -16,28 +12,19 @@ const Dats = () => {
   return (
     <>
       <Title>모두의 OH-WELL-DAT (모두의 웰빙 댓글)</Title>
-<<<<<<< HEAD
-      <Boxes>
-        <span>오늘 나의 웰빙식단!</span>
-        <p>작성자:호잇</p>
-        <div>
-          <Link to={"/info"}>자세히보기</Link>
-        </div>
-        <button> 🗑️</button>
-      </Boxes>
-=======
 
       {ohwell.map((ohwell) => {
         return (
           <Boxes onClick={() => navigate("/info")}>
             <span>{ohwell.title}</span>
             <p>작성자:{ohwell.nickname}</p>
-            <p>자세히보기 -> 링크로 설정예정</p>
+            <div>
+              <Link to={"/info"}>자세히보기</Link>
+            </div>
             <button> 🗑️</button>
           </Boxes>
         );
       })}
->>>>>>> d609675ef9cc3a43b8b249ea34b120dcc52df238
     </>
   );
 };

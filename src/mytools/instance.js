@@ -12,3 +12,10 @@ export const ohwellApi = {
   deleteOhwell: (ohwellId) => instance.delete(`/ohwell/${ohwellId}`),
   patchOhwell: (ohwellId, edit) => instance.patch(`/ohwell/${ohwellId}`, edit),
 };
+
+export const dadatApi = {
+  getDadat: () => instance.get("/dadats"),
+  postDadat: (dadat) => instance.post("/dadats", dadat),
+  deleteDadat: (dadatId) => instance.delete(`/dadats/${dadatId}`),
+  patchDadat: (dadatId, edit) => instance.patch(`/dadats/${dadatId}`, edit),
+};

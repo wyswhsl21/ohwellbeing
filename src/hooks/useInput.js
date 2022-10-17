@@ -14,3 +14,18 @@ const useInput = () => {
 };
 
 export default useInput;
+
+// const useInputTwo = () => {
+//   const [newDadat, setNewDadat] = useState({
+//   nickname: "",
+//     memo: "",
+// })
+
+// const dadatEditHandler = (event) => {
+//   const { name, value } = event.target;
+//   setNewDadat({ ...newDadat, [name]: value });
+// };
+// return [newDadat, dadatChangeHandler];
+// };
+// }
+// export default useInputTwo;

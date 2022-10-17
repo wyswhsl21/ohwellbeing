@@ -1,10 +1,59 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import useInput from "../hooks/useInput";
+import EditDadat from "./editDadat";
+// import useInput from "../hooks/useInput";
+// import { dadatApi } from "../mytools/instance";
 
 const MoreInfo = () => {
-  const [dadat, dadatChangeHandler] = useInput();
+  // 인풋 박스 값 임력
+  const [dadat, setDadat] = useState({
+    nickname: "",
+    memo: "",
+  });
+
+  const dadatChangeHandler = (event) => {
+    const { name, value } = event.target;
+    console.log({ name, value });
+    setDadat({ ...dadat, [name]: value });
+  };
+  // const [dadat, dadatChangeHandler] = useInput();
+  // console.log(dadat);
+
+  //  인풋 박스 값 저장/추가 POST
+  const [dadats, setDadats] = useState(null);
+  const dadatSubmitHandler = async (dadat) => {
+    console.log(dadat);
+    if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
+    const postDadats = await axios.post("http://localhost:3001/dadats", dadat);
+    console.log(postDadats);
+    setDadats([...dadats, postDadats.data]);
+    setDadat({
+      nickname: "",
+      memo: "",
+    });
+  };
+
+  // 눌러서 댓글보기의 댓글 GET
+  const fetchDatas = async () => {
+    const getDadats = await axios.get("http://localhost:3001/dadats");
+    // console.log(getDadats);
+    setDadats(getDadats.data);
+  };
+
+  // 눌러서 댓글보기의 댓글 삭제하기 Delete
+  const dadatDeleteHandler = async (dadatId) => {
+    await axios.delete(`http://localhost:3001/dadats/${dadatId}`);
+    const delDadat = dadats.filter((delId) => delId.id !== dadatId);
+    console.log(delDadat);
+    setDadats(delDadat);
+  };
+
+  // fetchTodos함수가 실행될때 한번만 이일이 실행되도록 해준다
+  useEffect(() => {
+    fetchDatas();
+  }, []);
 
   return (
     <>
@@ -22,11 +71,18 @@ const MoreInfo = () => {
           <button>수정하기</button>
         </div>
       </InfoBox>
+
+      {/* 눌러서 댓글보기 페이지 ---> dadat(대댓글) */}
       <DadatBox>
         <hr />
         <h3>눌러서댓글보기</h3>
         <hr />
-        <CommentBox onSubmit={dadatSubmitHandler}>
+        <CommentBox
+          onSubmit={(e) => {
+            e.preventDefault();
+            dadatSubmitHandler(dadat);
+          }}
+        >
           <div>
             <NickName>
               이름 :
@@ -52,16 +108,25 @@ const MoreInfo = () => {
           <button>추가하기</button>
         </CommentBox>
         <NewComment>
-          <div>
-            <span>닉네임</span>
-            <p>댓글남겨주세용</p>
-          </div>
-          <div>
-            <button>수정하기</button>
-            <button>삭제</button>
-          </div>
+          {dadats?.map((mydadats) => (
+            <div key={mydadats.id}>
+              {/* 대댓 입력상태 */}
+              <div>
+                <span>{mydadats.nickname}</span>
+                <p>{mydadats.memo}</p>
+              </div>
+
+              <div>
+                <button>수정하기</button>
+                <button onClick={() => dadatDeleteHandler(mydadats.id)}>
+                  삭제
+                </button>
+              </div>
+            </div>
+          ))}
         </NewComment>
       </DadatBox>
+      <EditDadat dadats={dadats} setDadats={setDadats} />
     </>
   );
 };
@@ -110,15 +175,22 @@ const CommentBox = styled.form`
   button {
     background-color: transparent;
     border-radius: 15px;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
   }
 `;
 
 const NewComment = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  border: 1px solid gray;
   margin: 30px auto 80px auto;
+  div {
+    border: 1px solid gray;
+    margin: 10px;
+  }
 `;
 const NickName = styled.div`
   input {
