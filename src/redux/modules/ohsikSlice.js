@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { ohwellApi } from "../../hooks/instance";
+import { ohwellApi } from "../../mytools/instance";
 
 const initialState = {
   ohwells: [

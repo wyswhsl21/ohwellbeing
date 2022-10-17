@@ -1,20 +1,60 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import useInput from "../hooks/useInput";
-import { __getOhwells } from "../redux/modules/ohsiksSlice";
+import EditDadat from "./editDadat";
+// import useInput from "../hooks/useInput";
+// import { dadatApi } from "../mytools/instance";
 
 const MoreInfo = () => {
-  const { id } = useParams();
-  const [dadat, dadatChangeHandler] = useInput();
-  const ohwell = useSelector((state) => state.ohsiks.ohwell);
-  console.log(ohwell);
-  const dispatch = useDispatch();
+  // 인풋 박스 값 임력
+  const [dadat, setDadat] = useState({
+    nickname: "",
+    memo: "",
+  });
 
+  const dadatChangeHandler = (event) => {
+    const { name, value } = event.target;
+    console.log({ name, value });
+    setDadat({ ...dadat, [name]: value });
+  };
+  // const [dadat, dadatChangeHandler] = useInput();
+  // console.log(dadat);
+
+  //  인풋 박스 값 저장/추가 POST
+  const [dadats, setDadats] = useState(null);
+  const dadatSubmitHandler = async (dadat) => {
+    console.log(dadat);
+    if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
+    const postDadats = await axios.post("http://localhost:3001/dadats", dadat);
+    console.log(postDadats);
+    setDadats([...dadats, postDadats.data]);
+    setDadat({
+      nickname: "",
+      memo: "",
+    });
+  };
+
+  // 눌러서 댓글보기의 댓글 GET
+  const fetchDatas = async () => {
+    const getDadats = await axios.get("http://localhost:3001/dadats");
+    // console.log(getDadats);
+    setDadats(getDadats.data);
+  };
+
+  // 눌러서 댓글보기의 댓글 삭제하기 Delete
+  const dadatDeleteHandler = async (dadatId) => {
+    await axios.delete(`http://localhost:3001/dadats/${dadatId}`);
+    const delDadat = dadats.filter((delId) => delId.id !== dadatId);
+    console.log(delDadat);
+    setDadats(delDadat);
+  };
+
+  // fetchTodos함수가 실행될때 한번만 이일이 실행되도록 해준다
   useEffect(() => {
-    dispatch(__getOhwells(id));
-  }, [dispatch, id]);
+    fetchDatas();
+  }, []);
+
   return (
     <>
       <InfoBox>
@@ -24,18 +64,25 @@ const MoreInfo = () => {
           </div>
 
           <p>2022.10.15 오후9:20</p>
-          <h2>{ohwell?.title}</h2>
-          <h4>{ohwell?.memo}</h4>
+          <h2>오늘 나의 웰빙식단!</h2>
+          <h4>고구마1개 닭가슴살100g 우유1컵</h4>
         </div>
         <div>
           <button>수정하기</button>
         </div>
       </InfoBox>
+
+      {/* 눌러서 댓글보기 페이지 ---> dadat(대댓글) */}
       <DadatBox>
         <hr />
         <h3>눌러서댓글보기</h3>
         <hr />
-        <CommentBox>
+        <CommentBox
+          onSubmit={(e) => {
+            e.preventDefault();
+            dadatSubmitHandler(dadat);
+          }}
+        >
           <div>
             <NickName>
               이름 :
@@ -61,16 +108,25 @@ const MoreInfo = () => {
           <button>추가하기</button>
         </CommentBox>
         <NewComment>
-          <div>
-            <span>닉네임</span>
-            <p>댓글남겨주세용</p>
-          </div>
-          <div>
-            <button>수정하기</button>
-            <button>삭제</button>
-          </div>
+          {dadats?.map((mydadats) => (
+            <div key={mydadats.id}>
+              {/* 대댓 입력상태__ */}
+              <div>
+                <span>{mydadats.nickname}</span>
+                <p>{mydadats.memo}</p>
+              </div>
+
+              <div>
+                <button>수정하기</button>
+                <button onClick={() => dadatDeleteHandler(mydadats.id)}>
+                  삭제
+                </button>
+              </div>
+            </div>
+          ))}
         </NewComment>
       </DadatBox>
+      <EditDadat dadats={dadats} setDadats={setDadats} />
     </>
   );
 };
@@ -106,7 +162,7 @@ const DadatBox = styled.div`
   width: 85%;
   margin: auto;
 `;
-const CommentBox = styled.div`
+const CommentBox = styled.form`
   margin: 30px auto;
   display: flex;
   flex-direction: row;
@@ -119,15 +175,22 @@ const CommentBox = styled.div`
   button {
     background-color: transparent;
     border-radius: 15px;
+    &:hover {
+      background-color: black;
+      color: white;
+    }
   }
 `;
 
 const NewComment = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  border: 1px solid gray;
   margin: 30px auto 80px auto;
+  div {
+    border: 1px solid gray;
+    margin: 10px;
+  }
 `;
 const NickName = styled.div`
   input {
