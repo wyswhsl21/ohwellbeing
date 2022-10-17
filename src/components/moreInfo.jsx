@@ -1,11 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import useInput from "../hooks/useInput";
+import { __getOhwells } from "../redux/modules/ohsiksSlice";
 
 const MoreInfo = () => {
+  const { id } = useParams();
   const [dadat, dadatChangeHandler] = useInput();
+  const ohwell = useSelector((state) => state.ohsiks.ohwell);
+  console.log(ohwell);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(__getOhwells(id));
+  }, [dispatch, id]);
   return (
     <>
       <InfoBox>
@@ -15,8 +24,8 @@ const MoreInfo = () => {
           </div>
 
           <p>2022.10.15 오후9:20</p>
-          <h2>오늘 나의 웰빙식단!</h2>
-          <h4>고구마1개 닭가슴살100g 우유1컵</h4>
+          <h2>{ohwell?.title}</h2>
+          <h4>{ohwell?.memo}</h4>
         </div>
         <div>
           <button>수정하기</button>

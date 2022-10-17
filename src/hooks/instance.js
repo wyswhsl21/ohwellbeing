@@ -8,6 +8,7 @@ const instance = axios.create({
 //사용 하다보면 익숙해질거에요 *^^*
 export const ohwellApi = {
   getOhwell: () => instance.get("/ohwell"), //각각의 get,post,delete,patch입니다!
+  getOhwells: (arg) => instance.get(`/ohwell/${arg}`), //각각의 get,post,delete,patch입니다!
   postOhwell: (ohwell) => instance.post("/ohwell", ohwell),
   deleteOhwell: (ohwellId) => instance.delete(`/ohwell/${ohwellId}`),
   patchOhwell: (ohwellId, edit) => instance.patch(`/ohwell/${ohwellId}`, edit),
