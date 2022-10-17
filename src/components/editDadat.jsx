@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 
 const EditDadat = ({ dadats, setDadats }) => {
-  console.log(dadats);
+  // console.log(dadats);
   const [newDadat, setNewDadat] = useState({
     memo: "",
   });

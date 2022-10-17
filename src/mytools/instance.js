@@ -11,7 +11,8 @@ export const ohwellApi = {
   getOhwells: (arg) => instance.get(`/ohwell/${arg}`), //각각의 get,post,delete,patch입니다!
   postOhwell: (ohwell) => instance.post("/ohwell", ohwell),
   deleteOhwell: (ohwellId) => instance.delete(`/ohwell/${ohwellId}`),
-  patchOhwell: (ohwellId, edit) => instance.patch(`/ohwell/${ohwellId}`, edit),
+  patchOhwell: (ohwellId, payload) =>
+    instance.patch(`/ohwell/${ohwellId}`, { memo: payload }),
 };
 
 export const dadatApi = {
