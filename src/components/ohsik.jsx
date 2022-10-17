@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import useOhwell from "../hooks/useOhwell";
+import { ohwellApi } from "../mytools/instance";
 import { __addOhwell } from "../redux/modules/ohsikSlice";
-import { ohwellApi } from "../hooks/instance";
+
 const Ohsik = () => {
   //value 정리
   const [value, onChangehandler] = useOhwell();
