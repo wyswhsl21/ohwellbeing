@@ -1,40 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import useInput from "../hooks/useInput";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import useInput from '../hooks/useInput';
 
-import styled from "styled-components";
+import styled from 'styled-components';
+
+import { useParams } from 'react-router-dom';
+import { __updateDadat } from '../redux/modules/ohsiksSlice';
+
 import {
   __deleteDadat,
   __getDadat,
   __postDadat,
-  __updateDadat,
-} from "../redux/modules/dadatSlice";
+} from '../redux/modules/dadatSlice';
 
 const EditDadat = () => {
   // 설렉터
-  const globaldadat = useSelector((state) => state.dadat.dadats);
+
+  const { id: ohwellId } = useParams();
+  const comments = useSelector((state) => state.ohsiks.ohwell.dadats);
+
   // 디스페치
   const dispatch = useDispatch();
   // 훅
   const [dadat, dadatChangeHandler] = useInput();
-  const [newDadat, setNewDadat] = useState("");
+  const [newDadat, setNewDadat] = useState('');
   const [edit, setEdit] = useState(false);
-
-  // 유즈이펙트
-  useEffect(() => {
-    dispatch(__getDadat());
-  }, [dispatch]);
 
   //  인풋 박스 값 저장/추가 POST
   const dadatSubmitHandler = () => {
     // console.log(dadat);
-    if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
+    if (dadat.nickname.trim() === '' || dadat.memo.trim() === '') return;
     dispatch(__postDadat(dadat));
   };
 
   // 눌러서 댓글보기의 댓글 삭제하기 Delete
   const dadatDeleteHandler = (id) => {
-    const result = window.confirm("정말로 삭제 하시겠습니까?");
+    const result = window.confirm('정말로 삭제 하시겠습니까?');
     if (result) {
       dispatch(__deleteDadat(id));
     } else {
@@ -44,33 +45,21 @@ const EditDadat = () => {
 
   // 대댓글 수정 저장하기 변경하여 저장 patch
   const onClickUpdateHandler = (newDadatId) => {
-    dispatch(__updateDadat({ newDadatId, newDadat }));
-    setNewDadat("");
+    const newComments = comments.map((comment) => {
+      if (comment.id === newDadatId) {
+        return {
+          ...comment,
+          memo: newDadat,
+        };
+      } else {
+        return comment;
+      }
+    });
+    dispatch(__updateDadat({ ohwellId, newComments }));
+    setNewDadat('');
     setEdit(false);
-    // console.log(newDadatId);
-    // console.log(newDadat);
   };
 
-  // const newDadatEditHandler = async (mydadats) => {
-  //   // if (mydadats.memo.trim() === "") return;
-  //   const editDadat = await axios.patch(
-  //     `http://localhost:3001/dadats/${mydadats.id}`,
-  //     mydadats
-  //   );
-  //   const refresh = dadats.map((mynewdadats) => {
-  //     if (mynewdadats.id === mydadats.id) {
-  //       return {
-  //         ...mynewdadats,
-  //         memo: editDadat.data.memo,
-  //       };
-  //     }
-  //     return mynewdadats;
-  //   });
-  //   setDadats(refresh);
-  //   setNewDadat({
-  //     memo: "",
-  //   });
-  // };
   return (
     <>
       <DadatBox>
@@ -113,7 +102,7 @@ const EditDadat = () => {
           <NewComment>
             {/* 대댓  수정하기 누르면 -> 인풋박스로 변경됨*/}
 
-            {globaldadat?.map((mydadats) => (
+            {comments?.map((mydadats) => (
               <div key={mydadats.id}>
                 {/* 대댓 입력상태__ */}
                 <div>
@@ -174,7 +163,7 @@ const EditDadat = () => {
       ) : (
         <DadatBox>
           <NewComment>
-            {globaldadat?.map((mydadats) => (
+            {comments?.map((mydadats) => (
               <div key={mydadats.id}>
                 {/* 대댓 입력상태__ */}
                 <div>
