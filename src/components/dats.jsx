@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import styled from "styled-components";
-import { __deleteOhwell, __getOhwell } from "../redux/modules/ohsikSlice";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import { __deleteOhwell, __getOhwell } from '../redux/modules/ohsikSlice';
 
 const Dats = () => {
   //hook 정리
@@ -17,7 +17,7 @@ const Dats = () => {
   }, []);
   //handler 정리
   const onDeleteClickhandler = (id) => {
-    const result = window.confirm("정말로 삭제 하시겠습니까?");
+    const result = window.confirm('정말로 삭제 하시겠습니까?');
     if (result) {
       // axios.delete(`http://localhost:3001/ohwell/${id}`);
       dispatch(__deleteOhwell(id));
@@ -35,9 +35,7 @@ const Dats = () => {
           <Boxes key={ohwell.id}>
             <span>{ohwell.title}</span>
             <p>작성자:{ohwell.nickname}</p>
-            <p onClick={() => navigate(`/info/${ohwell.id}`)}>
-              자세히보기 -> 링크로 설정예정
-            </p>
+            <p onClick={() => navigate(`/info/${ohwell.id}`)}>자세히보기</p>
             <button onClick={() => onDeleteClickhandler(ohwell.id)}> 🗑️</button>
           </Boxes>
         );
