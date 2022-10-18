@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { __deleteOhwell, __getOhwell } from "../redux/modules/ohsikSlice";
 
@@ -14,7 +14,7 @@ const Dats = () => {
   //useEffect 정리
   useEffect(() => {
     dispatch(__getOhwell());
-  }, []);
+  }, [dispatch]);
   //handler 정리
   const onDeleteClickhandler = (id) => {
     const result = window.confirm("정말로 삭제 하시겠습니까?");
@@ -35,9 +35,7 @@ const Dats = () => {
           <Boxes key={ohwell.id}>
             <span>{ohwell.title}</span>
             <p>작성자:{ohwell.nickname}</p>
-            <p onClick={() => navigate(`/info/${ohwell.id}`)}>
-              자세히보기 -> 링크로 설정예정
-            </p>
+            <p onClick={() => navigate(`/info/${ohwell.id}`)}>자세히보기</p>
             <button onClick={() => onDeleteClickhandler(ohwell.id)}> 🗑️</button>
           </Boxes>
         );

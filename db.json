@@ -35,12 +35,56 @@
     {
       "nickname": "안녕",
       "memo": "수정하기",
-      "id": 3
+      "id": 3,
+      "ohwellId": 10
     },
     {
       "nickname": "ㅌㅌㅌ",
-      "memo": "ㅌㅌㅌ",
-      "id": 4
+      "memo": "ㅇㄹㅇㄹㅇㄹ",
+      "id": 4,
+      "ohwellId": 10
+    },
+    {
+      "nickname": "ㅇㅇㅇ",
+      "memo": "ㅇㅇㅇ",
+      "ohwellId": 9,
+      "id": 6
+    },
+    {
+      "nickname": "몇번?",
+      "memo": "ㅇㅇㅇ",
+      "ohwellId": 9,
+      "id": 7
+    },
+    {
+      "nickname": "ㅌㅊㅌㅊ",
+      "memo": "ㅌㅊㅌㅊㅌㅊㅌ",
+      "ohwellId": 1,
+      "id": 8
+    },
+    {
+      "nickname": "ㅊㅍㅊㅍ`",
+      "memo": "ㅍㅎㄴㅀ",
+      "ohwellId": 1,
+      "id": 9
+    },
+    {
+      "nickname": "2번입니다!",
+      "memo": "되는고야!?",
+      "ohwellId": 2,
+      "id": 10
+    },
+    {
+      "nickname": "2번",
+      "memo": "댓글!",
+      "ohwellId": 2,
+      "id": 11
+    },
+    {
+      "nickname": "ㄴㄴㄴ",
+      "memo": "우오아예!",
+      "ohwellId": 2,
+      "id": 12
     }
   ]
 }

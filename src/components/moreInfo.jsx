@@ -12,7 +12,7 @@ const MoreInfo = () => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
   const [update, setUpdate] = useState("");
-  console.log(update);
+  console.log(id);
 
   const onClickUpdateHandler = () => {
     if (update.trim() === "") {
@@ -79,7 +79,7 @@ const MoreInfo = () => {
           </div>
         </InfoBox>
       )}
-      <EditDadat />
+      <EditDadat ohwellId={id} />
     </>
   );
 };

@@ -10,13 +10,19 @@ import {
   __updateDadat,
 } from "../redux/modules/dadatSlice";
 
-const EditDadat = () => {
+const EditDadat = ({ ohwellId }) => {
+  console.log(ohwellId);
   // 설렉터
   const globaldadat = useSelector((state) => state.dadat.dadats);
+  const newglobaldadat = globaldadat.filter((gdadat) => {
+    console.log(gdadat.ohwellId, ohwellId);
+    return gdadat.ohwellId === Number(ohwellId);
+  });
+  console.log(newglobaldadat);
   // 디스페치
   const dispatch = useDispatch();
   // 훅
-  const [dadat, dadatChangeHandler] = useInput();
+  const [dadat, setDadat, dadatChangeHandler] = useInput();
   const [newDadat, setNewDadat] = useState("");
   const [edit, setEdit] = useState(false);
 
@@ -29,7 +35,12 @@ const EditDadat = () => {
   const dadatSubmitHandler = () => {
     // console.log(dadat);
     if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
-    dispatch(__postDadat(dadat));
+    dispatch(__postDadat({ ...dadat, ohwellId: Number(ohwellId) }));
+    setDadat({
+      nickname: "",
+      memo: "",
+      ohwellId: 0,
+    });
   };
 
   // 눌러서 댓글보기의 댓글 삭제하기 Delete
@@ -47,30 +58,8 @@ const EditDadat = () => {
     dispatch(__updateDadat({ newDadatId, newDadat }));
     setNewDadat("");
     setEdit(false);
-    // console.log(newDadatId);
-    // console.log(newDadat);
   };
 
-  // const newDadatEditHandler = async (mydadats) => {
-  //   // if (mydadats.memo.trim() === "") return;
-  //   const editDadat = await axios.patch(
-  //     `http://localhost:3001/dadats/${mydadats.id}`,
-  //     mydadats
-  //   );
-  //   const refresh = dadats.map((mynewdadats) => {
-  //     if (mynewdadats.id === mydadats.id) {
-  //       return {
-  //         ...mynewdadats,
-  //         memo: editDadat.data.memo,
-  //       };
-  //     }
-  //     return mynewdadats;
-  //   });
-  //   setDadats(refresh);
-  //   setNewDadat({
-  //     memo: "",
-  //   });
-  // };
   return (
     <>
       <DadatBox>
@@ -108,12 +97,11 @@ const EditDadat = () => {
           <button>추가하기</button>
         </CommentBox>
       </DadatBox>
+      {/* 대댓  수정하기 누르면 -> 인풋박스로 변경됨*/}
       {edit ? (
         <DadatBox>
           <NewComment>
-            {/* 대댓  수정하기 누르면 -> 인풋박스로 변경됨*/}
-
-            {globaldadat?.map((mydadats) => (
+            {newglobaldadat?.map((mydadats) => (
               <div key={mydadats.id}>
                 {/* 대댓 입력상태__ */}
                 <div>
@@ -128,7 +116,7 @@ const EditDadat = () => {
                         setNewDadat(ev.target.value);
                       }}
                       // 고쳐야함 -> 지금은 모두 한번에 작동됨
-                      disabled={mydadats.id === newDadat.id ? edit : !edit}
+                      // disabled={mydadats.id === newDadat.id ? edit : !edit}
                     />
                   </div>
                 </div>
@@ -147,34 +135,12 @@ const EditDadat = () => {
                 </div>
               </div>
             ))}
-            {/* 맵안돌린 테스트용 수정인풋박스 */}
-            {/* <div>
-              <input
-                type="text"
-                placeholder="테스트용"
-                name="memo"
-                value={newDadat.memo}
-                onChange={(e) => {
-                  setNewDadat({ ...newDadat, memo: e.target.value });
-                }}
-              />
-              <div>
-                <button>수정저장</button>
-                <button
-                  onClick={() => {
-                    setEdit(false);
-                  }}
-                >
-                  취소
-                </button>
-              </div>
-            </div> */}
           </NewComment>
         </DadatBox>
       ) : (
         <DadatBox>
           <NewComment>
-            {globaldadat?.map((mydadats) => (
+            {newglobaldadat?.map((mydadats) => (
               <div key={mydadats.id}>
                 {/* 대댓 입력상태__ */}
                 <div>
