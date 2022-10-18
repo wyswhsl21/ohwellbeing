@@ -1,15 +1,13 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../hooks/useInput";
-=======
-import React, { useState } from "react";
->>>>>>> 44bd29a3694df328e3b7b001008cd18ffbeb9938
+
 import styled from "styled-components";
 import {
   __deleteDadat,
   __getDadat,
   __postDadat,
+  __updateDadat,
 } from "../redux/modules/dadatSlice";
 
 const EditDadat = () => {
@@ -19,6 +17,9 @@ const EditDadat = () => {
   const dispatch = useDispatch();
   // 훅
   const [dadat, dadatChangeHandler] = useInput();
+  const [newDadat, setNewDadat] = useState("");
+  const [edit, setEdit] = useState(false);
+
   // 유즈이펙트
   useEffect(() => {
     dispatch(__getDadat());
@@ -26,7 +27,7 @@ const EditDadat = () => {
 
   //  인풋 박스 값 저장/추가 POST
   const dadatSubmitHandler = () => {
-    console.log(dadat);
+    // console.log(dadat);
     if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
     dispatch(__postDadat(dadat));
   };
@@ -41,20 +42,15 @@ const EditDadat = () => {
     }
   };
 
-<<<<<<< HEAD
-=======
-const EditDadat = ({ dadats, setDadats }) => {
-  // console.log(dadats);
->>>>>>> 44bd29a3694df328e3b7b001008cd18ffbeb9938
-  const [newDadat, setNewDadat] = useState({
-    memo: "",
-  });
-  // const newDadatChangeHandler = (event) => {
-  //   // if (mydadatId === )
-  //   console.log(event);
-  //   setNewDadat({ ...newDadat, memo: event.target.value });
-  // };
-  // // 수정된값으로 변경하여 저장 patch
+  // 대댓글 수정 저장하기 변경하여 저장 patch
+  const onClickUpdateHandler = (newDadatId) => {
+    dispatch(__updateDadat({ newDadatId, newDadat }));
+    setNewDadat("");
+    setEdit(false);
+    // console.log(newDadatId);
+    // console.log(newDadat);
+  };
+
   // const newDadatEditHandler = async (mydadats) => {
   //   // if (mydadats.memo.trim() === "") return;
   //   const editDadat = await axios.patch(
@@ -77,7 +73,6 @@ const EditDadat = ({ dadats, setDadats }) => {
   // };
   return (
     <>
-      {/* 눌러서 댓글보기 페이지 ---> dadat(대댓글) */}
       <DadatBox>
         <hr />
         <h3>눌러서댓글보기</h3>
@@ -112,67 +107,98 @@ const EditDadat = ({ dadats, setDadats }) => {
           </div>
           <button>추가하기</button>
         </CommentBox>
-        <NewComment>
-          {globaldadat?.map((mydadats) => (
-            <div key={mydadats.id}>
-              {/* 대댓 입력상태__ */}
-              <div>
-                <span>{mydadats.nickname}</span>
-                <p>{mydadats.memo}</p>
-              </div>
-
-              <div>
-                <button>수정하기</button>
-                <button onClick={() => dadatDeleteHandler(mydadats.id)}>
-                  삭제
-                </button>
-              </div>
-            </div>
-          ))}
-        </NewComment>
       </DadatBox>
-      <DadatBox>
-        <NewComment>
-          <div>
-            <input
-              type="text"
-              placeholder="테스트용"
-              name="memo"
-              value={newDadat.memo}
-              onChange={(e) => {
-                setNewDadat({ ...newDadat, memo: e.target.value });
-              }}
-            />
-            <div>
-              <button>수정저장</button>
-              {/* <button onClick={() => newDadatEditHandler(mydadats)}>
-                수정저장
-              </button> */}
-              <button>취소</button>
-            </div>
-          </div>
-          {/* 대댓  수정하기 누르면 -> 인풋박스로 변경됨*/}
-          {/* {dadats?.map((mydadats) => (
-            <div key={mydadats.id}>
-              
+      {edit ? (
+        <DadatBox>
+          <NewComment>
+            {/* 대댓  수정하기 누르면 -> 인풋박스로 변경됨*/}
+
+            {globaldadat?.map((mydadats) => (
+              <div key={mydadats.id}>
+                {/* 대댓 입력상태__ */}
+                <div>
+                  <span>{mydadats.nickname}</span>
+                  <div>
+                    <input
+                      type="text"
+                      placeholder={mydadats.memo}
+                      name="memo"
+                      value={newDadat.memo}
+                      onChange={(ev) => {
+                        setNewDadat(ev.target.value);
+                      }}
+                      // 고쳐야함 -> 지금은 모두 한번에 작동됨
+                      disabled={mydadats.id === newDadat.id ? edit : !edit}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <button onClick={() => onClickUpdateHandler(mydadats.id)}>
+                    수정저장
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEdit(false);
+                    }}
+                  >
+                    취소
+                  </button>
+                </div>
+              </div>
+            ))}
+            {/* 맵안돌린 테스트용 수정인풋박스 */}
+            {/* <div>
               <input
                 type="text"
-                placeholder={mydadats.memo}
+                placeholder="테스트용"
                 name="memo"
                 value={newDadat.memo}
-                onChange={newDadatChangeHandler}
+                onChange={(e) => {
+                  setNewDadat({ ...newDadat, memo: e.target.value });
+                }}
               />
-
               <div>
-                <button onClick={() => newDadatEditHandler(mydadats)}>
-                  수정저장
+                <button>수정저장</button>
+                <button
+                  onClick={() => {
+                    setEdit(false);
+                  }}
+                >
+                  취소
                 </button>
-                <button>취소</button>
               </div>
-            </div>
-          ))} */}
-        </NewComment>
-      </DadatBox>
+            </div> */}
+          </NewComment>
+        </DadatBox>
+      ) : (
+        <DadatBox>
+          <NewComment>
+            {globaldadat?.map((mydadats) => (
+              <div key={mydadats.id}>
+                {/* 대댓 입력상태__ */}
+                <div>
+                  <span>{mydadats.nickname}</span>
+                  <p>{mydadats.memo}</p>
+                </div>
+
+                <div>
+                  <button
+                    onClick={() => {
+                      setEdit(true);
+                    }}
+                  >
+                    수정하기
+                  </button>
+                  <button onClick={() => dadatDeleteHandler(mydadats.id)}>
+                    삭제
+                  </button>
+                </div>
+              </div>
+            ))}
+          </NewComment>
+        </DadatBox>
+      )}
     </>
   );
 };
