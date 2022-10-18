@@ -110,10 +110,12 @@ const ohsikSlice = createSlice({
     },
     [__deleteOhwell.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.ohwells.filter((item) => item.id !== action.payload);
+      const newOhwell = state.ohwells.filter(
+        (item) => item.id !== action.payload
+      );
 
       console.log("fulfilled 상태", state, action);
-      return state;
+      state.ohwells = newOhwell;
     },
     [__deleteOhwell.rejected]: (state, action) => {
       state.isLoading = false;

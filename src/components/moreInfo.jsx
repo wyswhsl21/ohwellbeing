@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { __addOhwell } from "../redux/modules/ohsikSlice";
 import { __getOhwells, __updateOhwells } from "../redux/modules/ohsiksSlice";
 import EditDadat from "./editDadat";
 
