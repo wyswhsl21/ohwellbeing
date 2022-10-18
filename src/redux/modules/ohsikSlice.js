@@ -1,14 +1,14 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import { ohwellApi } from '../../mytools/instance';
+import { ohwellApi } from "../../mytools/instance";
 
 const initialState = {
   ohwells: [
     {
       id: 0,
-      nickname: '홍길동',
-      title: '오늘 점심 메뉴',
-      memo: '오늘 점심 샐러드 맛있음',
+      nickname: "홍길동",
+      title: "오늘 점심 메뉴",
+      memo: "오늘 점심 샐러드 맛있음",
     },
   ],
 
@@ -17,10 +17,11 @@ const initialState = {
 };
 //get promise
 export const __getOhwell = createAsyncThunk(
-  'ohwell/getOhwell',
+  "ohwell/getOhwell",
   async (payload, thunkAPI) => {
     try {
       const data = await ohwellApi.getOhwell();
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -30,7 +31,7 @@ export const __getOhwell = createAsyncThunk(
 
 //post promise
 export const __addOhwell = createAsyncThunk(
-  'ohwell/postOhwell',
+  "ohwell/postOhwell",
   async (payload, thunkAPI) => {
     try {
       const { data } = await ohwellApi.postOhwell(payload);
@@ -43,7 +44,7 @@ export const __addOhwell = createAsyncThunk(
 );
 //delete promise
 export const __deleteOhwell = createAsyncThunk(
-  'ohwell/deleteOhwell',
+  "ohwell/deleteOhwell",
   async (payload, thunkAPI) => {
     console.log(payload);
     try {
@@ -55,14 +56,13 @@ export const __deleteOhwell = createAsyncThunk(
     }
   }
 );
-
 //patch promise
 export const __patchOhwell = createAsyncThunk(
-  'ohwell/patchOhwell',
+  "ohwell/patchOhwell",
   async (arg, thunkAPI) => {
     try {
       const patchdata = await ohwellApi.patchOhwell(arg);
-
+      console.log(patchdata);
       return thunkAPI.fulfillWithValue(patchdata);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -70,7 +70,7 @@ export const __patchOhwell = createAsyncThunk(
   }
 );
 const ohsikSlice = createSlice({
-  name: 'ohsik',
+  name: "ohsik",
   initialState,
   reducers: {},
   extraReducers: {
@@ -84,7 +84,7 @@ const ohsikSlice = createSlice({
       //thunkAPI.fulfillWithValue(data.data) 액션객체가 디스패치 됨.
       state.isLoading = false; //네트워크 요청 끝났으니 false로 변경
       state.ohwells = action.payload;
-      console.log('fulfilled 상태', state, action);
+      console.log("fulfilled 상태", state, action);
     },
     //rejected 는 이행 실패 상태!
     [__getOhwell.rejected]: (state, action) => {
@@ -98,7 +98,7 @@ const ohsikSlice = createSlice({
     [__addOhwell.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.ohwells.push(action.payload);
-      console.log('fulfilled 상태', state, action);
+      console.log("fulfilled 상태", state, action);
     },
     [__addOhwell.rejected]: (state, action) => {
       state.isLoading = false;
@@ -112,7 +112,7 @@ const ohsikSlice = createSlice({
       state.isLoading = false;
       state.ohwells.filter((item) => item.id !== action.payload);
 
-      console.log('fulfilled 상태', state, action);
+      console.log("fulfilled 상태", state, action);
       return state;
     },
     [__deleteOhwell.rejected]: (state, action) => {
@@ -126,7 +126,7 @@ const ohsikSlice = createSlice({
     [__patchOhwell.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.ohwells = action.payload;
-      console.log('fulfilled 상태', state, action);
+      console.log("fulfilled 상태", state, action);
     },
     [__patchOhwell.rejected]: (state, action) => {
       state.isLoading = false;

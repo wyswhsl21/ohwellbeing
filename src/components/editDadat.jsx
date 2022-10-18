@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import useInput from '../hooks/useInput';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useInput from "../hooks/useInput";
 
-import styled from 'styled-components';
-
-import { useParams } from 'react-router-dom';
-import { __updateDadat } from '../redux/modules/ohsiksSlice';
-
+import styled from "styled-components";
 import {
   __deleteDadat,
   __getDadat,
   __postDadat,
-} from '../redux/modules/dadatSlice';
+  __updateDadat,
+} from "../redux/modules/dadatSlice";
 
 const EditDadat = ({ ohwellId }) => {
   console.log(ohwellId);
   // 설렉터
-<<<<<<< HEAD
   const globaldadat = useSelector((state) => state.dadat.dadats);
   const newglobaldadat = globaldadat.filter((gdadat) => {
     console.log(gdadat.ohwellId, ohwellId);
@@ -28,23 +24,16 @@ const EditDadat = ({ ohwellId }) => {
   // 훅
   const [dadat, setDadat, dadatChangeHandler] = useInput();
   const [newDadat, setNewDadat] = useState("");
-=======
-
-  const { id: ohwellId } = useParams();
-  const comments = useSelector((state) => state.ohsiks.ohwell.dadats);
-
-  // 디스페치
-  const dispatch = useDispatch();
-  // 훅
-  const [dadat, dadatChangeHandler] = useInput();
-  const [newDadat, setNewDadat] = useState('');
->>>>>>> 64df15fbd8152c48d43ceb77beb8178ce1053a02
   const [edit, setEdit] = useState(false);
+
+  // 유즈이펙트
+  useEffect(() => {
+    dispatch(__getDadat());
+  }, [dispatch]);
 
   //  인풋 박스 값 저장/추가 POST
   const dadatSubmitHandler = () => {
     // console.log(dadat);
-<<<<<<< HEAD
     if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
     dispatch(__postDadat({ ...dadat, ohwellId: Number(ohwellId) }));
     setDadat({
@@ -52,15 +41,11 @@ const EditDadat = ({ ohwellId }) => {
       memo: "",
       ohwellId: 0,
     });
-=======
-    if (dadat.nickname.trim() === '' || dadat.memo.trim() === '') return;
-    dispatch(__postDadat(dadat));
->>>>>>> 64df15fbd8152c48d43ceb77beb8178ce1053a02
   };
 
   // 눌러서 댓글보기의 댓글 삭제하기 Delete
   const dadatDeleteHandler = (id) => {
-    const result = window.confirm('정말로 삭제 하시겠습니까?');
+    const result = window.confirm("정말로 삭제 하시겠습니까?");
     if (result) {
       dispatch(__deleteDadat(id));
     } else {
@@ -70,18 +55,8 @@ const EditDadat = ({ ohwellId }) => {
 
   // 대댓글 수정 저장하기 변경하여 저장 patch
   const onClickUpdateHandler = (newDadatId) => {
-    const newComments = comments.map((comment) => {
-      if (comment.id === newDadatId) {
-        return {
-          ...comment,
-          memo: newDadat,
-        };
-      } else {
-        return comment;
-      }
-    });
-    dispatch(__updateDadat({ ohwellId, newComments }));
-    setNewDadat('');
+    dispatch(__updateDadat({ newDadatId, newDadat }));
+    setNewDadat("");
     setEdit(false);
   };
 
@@ -126,13 +101,7 @@ const EditDadat = ({ ohwellId }) => {
       {edit ? (
         <DadatBox>
           <NewComment>
-<<<<<<< HEAD
             {newglobaldadat?.map((mydadats) => (
-=======
-            {/* 대댓  수정하기 누르면 -> 인풋박스로 변경됨*/}
-
-            {comments?.map((mydadats) => (
->>>>>>> 64df15fbd8152c48d43ceb77beb8178ce1053a02
               <div key={mydadats.id}>
                 {/* 대댓 입력상태__ */}
                 <div>
@@ -171,11 +140,7 @@ const EditDadat = ({ ohwellId }) => {
       ) : (
         <DadatBox>
           <NewComment>
-<<<<<<< HEAD
             {newglobaldadat?.map((mydadats) => (
-=======
-            {comments?.map((mydadats) => (
->>>>>>> 64df15fbd8152c48d43ceb77beb8178ce1053a02
               <div key={mydadats.id}>
                 {/* 대댓 입력상태__ */}
                 <div>
