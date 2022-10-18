@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { __deleteOhwell, __getOhwell } from '../redux/modules/ohsikSlice';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { __deleteOhwell, __getOhwell } from "../redux/modules/ohsikSlice";
 
 const Dats = () => {
   //hook 정리
@@ -14,10 +14,10 @@ const Dats = () => {
   //useEffect 정리
   useEffect(() => {
     dispatch(__getOhwell());
-  }, []);
+  }, [dispatch]);
   //handler 정리
   const onDeleteClickhandler = (id) => {
-    const result = window.confirm('정말로 삭제 하시겠습니까?');
+    const result = window.confirm("정말로 삭제 하시겠습니까?");
     if (result) {
       // axios.delete(`http://localhost:3001/ohwell/${id}`);
       dispatch(__deleteOhwell(id));

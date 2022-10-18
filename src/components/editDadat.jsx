@@ -1,41 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import useInput from '../hooks/useInput';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useInput from "../hooks/useInput";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { useParams } from 'react-router-dom';
-import { __updateDadat } from '../redux/modules/ohsiksSlice';
+import { useParams } from "react-router-dom";
+import { __updateDadat, __postDadat } from "../redux/modules/ohsiksSlice";
 
-import {
-  __deleteDadat,
-  __getDadat,
-  __postDadat,
-} from '../redux/modules/dadatSlice';
+import { __deleteDadat } from "../redux/modules/dadatSlice";
 
 const EditDadat = () => {
   // 설렉터
-
-  const { id: ohwellId } = useParams();
   const comments = useSelector((state) => state.ohsiks.ohwell.dadats);
-
-  // 디스페치
-  const dispatch = useDispatch();
+  console.log(comments);
   // 훅
   const [dadat, dadatChangeHandler] = useInput();
-  const [newDadat, setNewDadat] = useState('');
+  const [newDadat, setNewDadat] = useState("");
   const [edit, setEdit] = useState(false);
+  const { id: ohwellId } = useParams();
+  const dispatch = useDispatch();
 
   //  인풋 박스 값 저장/추가 POST
   const dadatSubmitHandler = () => {
-    // console.log(dadat);
-    if (dadat.nickname.trim() === '' || dadat.memo.trim() === '') return;
-    dispatch(__postDadat(dadat));
+    // if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
+    dispatch(__postDadat({ ohwellId, dadat }));
   };
 
   // 눌러서 댓글보기의 댓글 삭제하기 Delete
   const dadatDeleteHandler = (id) => {
-    const result = window.confirm('정말로 삭제 하시겠습니까?');
+    const result = window.confirm("정말로 삭제 하시겠습니까?");
+
     if (result) {
       dispatch(__deleteDadat(id));
     } else {
@@ -55,8 +49,9 @@ const EditDadat = () => {
         return comment;
       }
     });
+    console.log(newComments);
     dispatch(__updateDadat({ ohwellId, newComments }));
-    setNewDadat('');
+    setNewDadat("");
     setEdit(false);
   };
 
@@ -136,28 +131,6 @@ const EditDadat = () => {
                 </div>
               </div>
             ))}
-            {/* 맵안돌린 테스트용 수정인풋박스 */}
-            {/* <div>
-              <input
-                type="text"
-                placeholder="테스트용"
-                name="memo"
-                value={newDadat.memo}
-                onChange={(e) => {
-                  setNewDadat({ ...newDadat, memo: e.target.value });
-                }}
-              />
-              <div>
-                <button>수정저장</button>
-                <button
-                  onClick={() => {
-                    setEdit(false);
-                  }}
-                >
-                  취소
-                </button>
-              </div>
-            </div> */}
           </NewComment>
         </DadatBox>
       ) : (
