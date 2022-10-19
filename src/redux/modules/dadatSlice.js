@@ -1,7 +1,7 @@
 // 눌러서 댓글보기페이지
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
+// import { act } from "react-dom/test-utils";
 import { dadatApi } from "../../mytools/instance";
 
 // thunk 함수
@@ -67,6 +67,7 @@ const initialState = {
       id: 0,
       nickname: "",
       memo: "",
+      ohwellId: 0,
     },
   ],
   isLoading: false,
@@ -76,7 +77,6 @@ const initialState = {
 export const dadatSlice = createSlice({
   name: "dadats",
   initialState,
-  // reducers: {},
   extraReducers: {
     //  POST DADATS!!! 대댓글 추가하기!!
     [__postDadat.pending]: (state) => {
@@ -114,7 +114,6 @@ export const dadatSlice = createSlice({
         (dadat) => action.payload !== dadat.id
       );
       state.dadats = deldadat;
-      console.log("fulfilled 상태", state, action);
     },
     [__deleteDadat.rejected]: (state, action) => {
       state.isLoading = false;
@@ -125,9 +124,6 @@ export const dadatSlice = createSlice({
       state.isLoading = true;
     },
     [__updateDadat.fulfilled]: (state, action) => {
-      console.log(action);
-      console.log(state.dadats); //현재 눌린시점의 값
-      // 액션에 위에서 보내준 payload를 받았음
       let newDadats = state.dadats.map((dadat) => {
         if (dadat.id !== action.payload.newDadatId) {
           return dadat;
@@ -137,8 +133,6 @@ export const dadatSlice = createSlice({
       });
       state.dadats = newDadats;
       state.isLoading = false;
-      // state.dadats = action.payload;
-      // console.log("fulfilled 상태", state, action);
     },
     [__updateDadat.rejected]: (state, action) => {
       state.isLoading = false;
@@ -147,5 +141,4 @@ export const dadatSlice = createSlice({
   },
 });
 
-// export const {} = dadatSlice.actions;
 export default dadatSlice.reducer;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const useOhwell = () => {
   //value 는 state 관리!
@@ -6,7 +6,6 @@ const useOhwell = () => {
     title: "",
     nickname: "",
     memo: "",
-    time: "",
   });
 
   //핸들러 로직

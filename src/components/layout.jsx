@@ -9,7 +9,7 @@ export default Layout;
 
 const Div = styled.div`
   max-width: 1200px;
-  min-width: 800px;
+  width: 80%;
   justify-content: center;
   margin: auto;
 `;
