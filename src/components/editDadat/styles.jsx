@@ -7,6 +7,9 @@ export const DadatBox = styled.div`
   min-width: 340px;
   height: 530px;
   transform: ${({ isUp }) => `translateY(${isUp ? 0 : 600}px)`};
+  transition: transform 500ms ease-in-out;
+  /* position: absolute; */
+  bottom: 0;
 `;
 export const Title = styled.div`
   font-size: 20px;

@@ -63,9 +63,9 @@ const Ohsik = () => {
               name="time"
             >
               <option>선택</option>
-              <option>아침</option>
-              <option>점심</option>
-              <option>저녁</option>
+              <option>아침 🌞</option>
+              <option>점심 🌈</option>
+              <option>저녁 🌃</option>
             </select>
           </div>
         </div>

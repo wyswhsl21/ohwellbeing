@@ -15,7 +15,7 @@ import {
 const EditDadat = ({ ohwellId }) => {
   // 설렉터
   const globaldadat = useSelector((state) => state.dadat.dadats);
-
+  console.log(globaldadat);
   // 설렉터 중  prop으로 받아온 값과 비교해 필요한 정보만 filter해주기 (알맞은 게시물에 알맞은 댓글)
   const newglobaldadat = globaldadat.filter((gdadat) => {
     console.log(gdadat.ohwellId, ohwellId);
