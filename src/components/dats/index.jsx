@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { __deleteOhwell, __getOhwell } from "../redux/modules/ohsikSlice";
+import { __deleteOhwell, __getOhwell } from "../../redux/modules/ohsikSlice";
+import { Title, Boxes } from "./styles";
 
 const Dats = () => {
   //hook 정리
@@ -33,10 +33,17 @@ const Dats = () => {
       {ohwell?.map((ohwell) => {
         return (
           <Boxes key={ohwell.id}>
-            <span>{ohwell.title}</span>
-            <p>작성자:{ohwell.nickname}</p>
+            <div>
+              <h4>{ohwell.title}</h4>
+              <br />
+              작성자:{ohwell.nickname}
+            </div>
+            🥗🥪🍚🥣🍠🍽️
             <p onClick={() => navigate(`/info/${ohwell.id}`)}>자세히보기</p>
-            <button onClick={() => onDeleteClickhandler(ohwell.id)}> 🗑️</button>
+            <button onClick={() => onDeleteClickhandler(ohwell.id)}>
+              {" "}
+              🗑️{" "}
+            </button>
           </Boxes>
         );
       })}
@@ -44,38 +51,3 @@ const Dats = () => {
   );
 };
 export default Dats;
-
-const Title = styled.div`
-  font-weight: 600;
-  font-size: 30px;
-  margin: 20px;
-`;
-
-const Boxes = styled.div`
-  border: 2px solid olive;
-  border-radius: 15px;
-  box-shadow: 0 0 0.5em 0 gray;
-  border: none;
-  height: 50px;
-  margin: 30px 20px;
-  padding: 10px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  span {
-    font-style: oblique;
-  }
-  p {
-    color: blue;
-  }
-  button {
-    font-size: 20px;
-    background-color: transparent;
-    border: none;
-    border-radius: 20px;
-    &:hover {
-      font-size: x-large;
-    }
-  }
-`;

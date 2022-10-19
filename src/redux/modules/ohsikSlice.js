@@ -9,6 +9,7 @@ const initialState = {
       nickname: "홍길동",
       title: "오늘 점심 메뉴",
       memo: "오늘 점심 샐러드 맛있음",
+      date: "2022.10.15 오후9:20",
     },
   ],
 
@@ -110,13 +111,10 @@ const ohsikSlice = createSlice({
     },
     [__deleteOhwell.fulfilled]: (state, action) => {
       state.isLoading = false;
-      const newOhwell = state.ohwells.filter(
-        (item) => item.id !== action.payload
-      );
+      state.ohwells.filter((item) => item.id !== action.payload);
 
       console.log("fulfilled 상태", state, action);
-
-      state.ohwells = newOhwell;
+      return state;
     },
     [__deleteOhwell.rejected]: (state, action) => {
       state.isLoading = false;
