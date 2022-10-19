@@ -12,7 +12,7 @@ const MoreInfo = () => {
   const ohwell = useSelector((state) => state.ohsiks.ohwell);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-  const [update, setUpdate] = useState("");
+  const [update, setUpdate] = useState(ohwell.memo);
   console.log(update);
 
   const onClickUpdateHandler = () => {
@@ -21,7 +21,6 @@ const MoreInfo = () => {
     }
     dispatch(__updateOhwells({ ...ohwell, memo: update }));
     setEdit(false);
-    setUpdate("");
   };
 
   useEffect(() => {
