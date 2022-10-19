@@ -4,9 +4,7 @@
       "id": 1,
       "title": "ㅁㅁㅁ",
       "nickname": "ㅁㅁㅁ",
-      "memo": "ㅁㅁㅁㅁ",
-<<<<<<< HEAD
-      "id": 1
+      "memo": "ㅁㅁㅁㅁ"
     },
     {
       "title": "ㅋㅋㅋ",
@@ -60,13 +58,13 @@
     },
     {
       "nickname": "ㅌㅊㅌㅊ",
-      "memo": "ㅌㅊㅌㅊㅌㅊㅌ",
+      "memo": "123213123",
       "ohwellId": 1,
       "id": 8
     },
     {
       "nickname": "ㅊㅍㅊㅍ`",
-      "memo": "ㅍㅎㄴㅀ",
+      "memo": "123213",
       "ohwellId": 1,
       "id": 9
     },
@@ -87,20 +85,6 @@
       "memo": "우오아예!",
       "ohwellId": 2,
       "id": 12
-=======
-      "dadats": [
-        {
-          "nickname": "안녕",
-          "memo": "asdasd",
-          "id": 3
-        },
-        {
-          "nickname": "ㅌㅌㅌ",
-          "memo": "asdsd",
-          "id": 4
-        }
-      ]
->>>>>>> 64df15fbd8152c48d43ceb77beb8178ce1053a02
     }
   ]
 }
