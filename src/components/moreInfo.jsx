@@ -12,6 +12,7 @@ const MoreInfo = () => {
   const ohwell = useSelector((state) => state.ohsiks.ohwell);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
+
   const [update, setUpdate] = useState(ohwell.memo);
   console.log(update);
 
@@ -79,7 +80,7 @@ const MoreInfo = () => {
           </div>
         </InfoBox>
       )}
-      <EditDadat />
+      <EditDadat ohwellId={id} />
     </>
   );
 };

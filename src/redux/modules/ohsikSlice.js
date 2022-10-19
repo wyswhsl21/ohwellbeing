@@ -21,6 +21,7 @@ export const __getOhwell = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await ohwellApi.getOhwell();
+      console.log(data);
       return thunkAPI.fulfillWithValue(data.data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -55,14 +56,13 @@ export const __deleteOhwell = createAsyncThunk(
     }
   }
 );
-
 //patch promise
 export const __patchOhwell = createAsyncThunk(
   "ohwell/patchOhwell",
   async (arg, thunkAPI) => {
     try {
       const patchdata = await ohwellApi.patchOhwell(arg);
-
+      console.log(patchdata);
       return thunkAPI.fulfillWithValue(patchdata);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -115,6 +115,7 @@ const ohsikSlice = createSlice({
       );
 
       console.log("fulfilled 상태", state, action);
+
       state.ohwells = newOhwell;
     },
     [__deleteOhwell.rejected]: (state, action) => {
