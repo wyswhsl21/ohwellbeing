@@ -1,5 +1,5 @@
 import React from "react";
-import OhWell from "../components/ohwell";
+import OhWell from "../components/ohwell/index";
 import Layout from "../components/layout";
 import Header from "../components/header";
 

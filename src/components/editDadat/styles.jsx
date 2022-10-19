@@ -6,6 +6,7 @@ export const DadatBox = styled.div`
   margin: auto;
   min-width: 340px;
   height: 530px;
+  transform: ${({ isUp }) => `translateY(${isUp ? 0 : 600}px)`};
 `;
 export const Title = styled.div`
   font-size: 20px;
@@ -22,9 +23,11 @@ export const CommentBox = styled.form`
   flex-direction: row;
   justify-content: space-between;
   font-size: 18px;
+
   input {
     box-shadow: 0 0 1em 0 #25422276;
     border: none;
+    border-radius: 5px;
   }
   div {
     display: flex;
@@ -71,6 +74,7 @@ export const Mycomment = styled.div`
   box-shadow: 0 0 1em 0 #2a4b2676;
   padding: 20px 10px 10px 10px;
   font-size: large;
+  border-radius: 10px;
   span {
     margin: 10px;
     color: #09351873;

@@ -19,11 +19,14 @@ export const Boxes = styled.div`
   justify-content: space-between;
   align-items: center;
   span {
-    font-style: oblique;
+    font-size: 25px;
+    font-weight: 600;
   }
   p {
     color: blue;
+    margin-bottom: 20px;
     cursor: pointer;
+    font-size: 15px;
   }
   button {
     font-size: 20px;
@@ -31,6 +34,7 @@ export const Boxes = styled.div`
     border: none;
     border-radius: 20px;
     font-size: 30px;
+    margin-bottom: 30px;
     cursor: pointer;
     &:hover {
       font-size: x-large;

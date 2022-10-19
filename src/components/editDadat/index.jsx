@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../hooks/useInput";
 import { __getDadat, __postDadat } from "../../redux/modules/dadatSlice";
@@ -22,8 +22,9 @@ const EditDadat = ({ ohwellId }) => {
     return gdadat.ohwellId === Number(ohwellId);
   });
 
-  // 훅
+  // hooks
   const [dadat, setDadat, dadatChangeHandler] = useInput();
+  const [isUp, setIsUp] = useState(false);
   const dispatch = useDispatch();
 
   // 유즈이펙트 데이터 그려주기! GET!!
@@ -44,13 +45,18 @@ const EditDadat = ({ ohwellId }) => {
 
   return (
     <>
-      <DadatBox>
-        <Title>
-          <hr />
-          <div>👀 눌러서댓글보기</div>
-          <hr />
-        </Title>
-
+      <Title>
+        <hr />
+        <div
+          onClick={() => {
+            setIsUp((pre) => !pre);
+          }}
+        >
+          {isUp ? "😶‍🌫️ 댓글숨기기" : "👀 눌러서댓글보기"}
+        </div>
+        <hr />
+      </Title>
+      <DadatBox isUp={isUp}>
         <CommentBox
           onSubmit={(e) => {
             e.preventDefault();
