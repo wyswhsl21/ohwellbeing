@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { __addOhwell } from "../redux/modules/ohsikSlice";
 import { __getOhwells, __updateOhwells } from "../redux/modules/ohsiksSlice";
 import EditDadat from "./editDadat";
 
@@ -11,8 +12,9 @@ const MoreInfo = () => {
   const ohwell = useSelector((state) => state.ohsiks.ohwell);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-  const [update, setUpdate] = useState("");
-  console.log(id);
+
+  const [update, setUpdate] = useState(ohwell.memo);
+  console.log(update);
 
   const onClickUpdateHandler = () => {
     if (update.trim() === "") {
@@ -20,7 +22,6 @@ const MoreInfo = () => {
     }
     dispatch(__updateOhwells({ ...ohwell, memo: update }));
     setEdit(false);
-    setUpdate("");
   };
 
   useEffect(() => {
@@ -37,23 +38,22 @@ const MoreInfo = () => {
       {edit ? (
         <InfoBox>
           <div>
-            <Link to={"/alldat"}>이전으로</Link>
+            <div>
+              <Link to={"/alldat"}>이전으로</Link>
+            </div>
+            <p>2022.10.15 오후9:20</p>
+            <h2>{ohwell?.title}</h2>
+            <textarea
+              name="memo"
+              maxLength={200}
+              value={update}
+              onChange={(e) => {
+                setUpdate(e.target.value);
+              }}
+            >
+              <h4>{ohwell?.memo}</h4>
+            </textarea>
           </div>
-
-          <p>2022.10.15 오후9:20</p>
-
-          <h2>{ohwell?.title}</h2>
-          <textarea
-            name="memo"
-            maxLength={200}
-            value={update}
-            onChange={(e) => {
-              setUpdate(e.target.value);
-            }}
-          >
-            <h3>{ohwell?.memo}</h3>
-          </textarea>
-
           <div>
             <button onClick={onClickUpdateHandler}>저장 하기</button>
           </div>
@@ -61,13 +61,14 @@ const MoreInfo = () => {
       ) : (
         <InfoBox>
           <div>
-            <Link to={"/alldat"}>이전으로</Link>
+            <div>
+              <Link to={"/alldat"}>이전으로</Link>
+            </div>
+
+            <p>2022.10.15 오후9:20</p>
+            <h2>{ohwell?.title}</h2>
+            <h4>{ohwell?.memo}</h4>
           </div>
-
-          <p>MY OH-SIK (오늘의 식단)</p>
-          <h2>{ohwell?.title}</h2>
-          <h4>{ohwell?.memo}</h4>
-
           <div>
             <button
               onClick={() => {
@@ -90,9 +91,9 @@ const InfoBox = styled.div`
   border-radius: 15px;
   max-width: 1000px;
   width: 80%;
-  height: 250px;
+  height: 300px;
   margin: 100px auto;
-  padding: 20px 20px 10px 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -103,28 +104,10 @@ const InfoBox = styled.div`
     color: blue;
     float: right;
   }
-  div {
-    text-align: right;
-  }
   button {
+    max-width: 1000px;
+    width: 80%;
+    align-items: center;
     background-color: transparent;
-    border-radius: 15px;
-    border: none;
-    box-shadow: 0 0 1em 0 #2a4b2676;
-    margin: 15px;
-    padding: 5px;
-    cursor: pointer;
-    &:hover {
-      background-color: #2a4b2676;
-      color: white;
-      font-weight: bolder;
-    }
-  }
-  textarea {
-    background-color: #2a4b2613;
-    border: none;
-    width: 95%;
-    padding: 10px;
-    font-size: 18px;
   }
 `;
