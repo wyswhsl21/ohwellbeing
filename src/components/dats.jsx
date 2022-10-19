@@ -16,10 +16,10 @@ const Dats = () => {
     dispatch(__getOhwell());
   }, [dispatch]);
   //handler 정리
+
   const onDeleteClickhandler = (id) => {
     const result = window.confirm("정말로 삭제 하시겠습니까?");
     if (result) {
-      // axios.delete(`http://localhost:3001/ohwell/${id}`);
       dispatch(__deleteOhwell(id));
     } else {
       return;
@@ -33,6 +33,13 @@ const Dats = () => {
       {ohwell?.map((ohwell) => {
         return (
           <Boxes key={ohwell.id}>
+            <span>
+              {ohwell.time === "아침"
+                ? "🌞"
+                : ohwell.time === "점심"
+                ? "🌈"
+                : "🌛"}
+            </span>
             <span>{ohwell.title}</span>
             <p>작성자:{ohwell.nickname}</p>
             <p onClick={() => navigate(`/info/${ohwell.id}`)}>자세히보기</p>

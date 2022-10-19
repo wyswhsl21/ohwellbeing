@@ -6,6 +6,7 @@ const useOhwell = () => {
     title: "",
     nickname: "",
     memo: "",
+    time: "",
   });
 
   //핸들러 로직
