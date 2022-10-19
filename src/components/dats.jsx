@@ -38,7 +38,7 @@ const Dats = () => {
                 ? "🌞"
                 : ohwell.time === "점심"
                 ? "🌈"
-                : "🌛"}
+                : "🌃"}
             </span>
             <span>{ohwell.title}</span>
             <p>작성자:{ohwell.nickname}</p>

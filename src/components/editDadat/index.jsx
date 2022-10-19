@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import useInput from '../../hooks/useInput';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import useInput from "../../hooks/useInput";
 
-import { __getDadat, __postDadat } from '../../redux/modules/dadatSlice';
-import Comment from '../comment';
-import { CommentBox, Dadat, DadatBox, NewComment, NickName } from './styles';
+import { __getDadat, __postDadat } from "../../redux/modules/dadatSlice";
+import Comment from "../comment";
+import { CommentBox, Dadat, DadatBox, NewComment, NickName } from "./styles";
 
 const EditDadat = ({ ohwellId }) => {
   console.log(ohwellId);
   // 설렉터
+  const [up, setUp] = useState(false);
   const globaldadat = useSelector((state) => state.dadat.dadats);
   const newglobaldadat = globaldadat.filter((gdadat) => {
     console.log(gdadat.ohwellId, ohwellId);
@@ -28,11 +29,11 @@ const EditDadat = ({ ohwellId }) => {
   //  인풋 박스 값 저장/추가 POST
   const dadatSubmitHandler = () => {
     // console.log(dadat);
-    if (dadat.nickname.trim() === '' || dadat.memo.trim() === '') return;
+    if (dadat.nickname.trim() === "" || dadat.memo.trim() === "") return;
     dispatch(__postDadat({ ...dadat, ohwellId: Number(ohwellId) }));
     setDadat({
-      nickname: '',
-      memo: '',
+      nickname: "",
+      memo: "",
       ohwellId: 0,
     });
   };
