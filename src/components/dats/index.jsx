@@ -33,9 +33,9 @@ const Dats = () => {
         return (
           <Boxes key={ohwell.id}>
             <span>
-              {ohwell.time === "아침"
+              {ohwell.time === "아침 🌞"
                 ? "🌞"
-                : ohwell.time === "점심"
+                : ohwell.time === "점심 🌈"
                 ? "🌈"
                 : "🌃"}
             </span>

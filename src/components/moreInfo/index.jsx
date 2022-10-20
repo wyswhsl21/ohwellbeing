@@ -44,9 +44,9 @@ const MoreInfo = () => {
             {newMyOhwell?.map((ohwell) => {
               return (
                 <span key={ohwell.id}>
-                  {ohwell.time === "아침"
+                  {ohwell.time === "아침 🌞"
                     ? "🌞"
-                    : ohwell.time === "점심"
+                    : ohwell.time === "점심 🌈"
                     ? "🌈"
                     : "🌃"}
                 </span>
@@ -79,15 +79,16 @@ const MoreInfo = () => {
             {newMyOhwell?.map((ohwell) => {
               return (
                 <span key={ohwell.id}>
-                  {ohwell.time === "아침"
+                  {ohwell.time === "아침 🌞"
                     ? "🌞"
-                    : ohwell.time === "점심"
+                    : ohwell.time === "점심 🌈"
                     ? "🌈"
                     : "🌃"}
                 </span>
               );
             })}
             <h4>TODAY'S OH-SIK (오늘의 식단)</h4>
+
             <h4>{ohwell?.title}</h4>
             <h2>{ohwell?.memo}</h2>
           </form>

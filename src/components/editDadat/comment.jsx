@@ -74,7 +74,10 @@ function Comment({ mydadats }) {
             />
           ) : (
             // 대댓 적혀있는 리스트
-            <h4>{mydadats.memo}</h4>
+            <>
+              <h6>{mydadats.date}</h6>
+              <h4>{mydadats.memo}</h4>
+            </>
           )}
         </div>
       </Mycomment>
