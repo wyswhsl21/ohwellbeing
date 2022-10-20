@@ -11,7 +11,8 @@ const useInput = () => {
     //   // formatDate(new Date());
     new Date().getFullYear() +
     "." +
-    parseInt(new Date().getMonth() + 1) +
+    new Date().getMonth() +
+    1 +
     "." +
     new Date().getDate() +
     " 오후 " +
