@@ -14,7 +14,7 @@ const MoreInfo = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
-  const [update, setUpdate] = useState(ohwell.memo);
+  const [update, setUpdate] = useState(ohwell?.memo);
 
   // 수정 버튼 PATCH
   const onClickUpdateHandler = () => {

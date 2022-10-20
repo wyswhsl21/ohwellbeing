@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useInput from "../../hooks/useInput";
 
 import { __getDadat, __postDadat } from "../../redux/modules/dadatSlice";
-import Comment from "../comment";
+import Comment from "./comment";
 import {
   CommentBox,
   Dadat,
