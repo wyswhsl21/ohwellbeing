@@ -6,11 +6,8 @@ export const DadatBox = styled.div`
   margin: auto;
   min-width: 340px;
   height: 530px;
-  transform: ${({ isUp }) => `translateX(${isUp ? 0 : 1200}px)`};
+  transform: ${({ isUp }) => `translateX(${isUp ? 0 : 1500}px)`};
   transition: transform 500ms ease-in-out;
-  /* position: absolute; */
-  /* bottom: 0; */
-  /* top: 1100px; */
 `;
 export const Title = styled.div`
   font-size: 20px;

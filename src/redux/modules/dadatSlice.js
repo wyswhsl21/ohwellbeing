@@ -1,6 +1,7 @@
 // 눌러서 댓글보기페이지
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import { dadatApi } from "../../mytools/instance";
 
 // thunk 함수
