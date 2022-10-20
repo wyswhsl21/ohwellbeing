@@ -45,6 +45,7 @@ const EditDadat = ({ ohwellId }) => {
       nickname: "",
       memo: "",
       ohwellId: 0,
+      date: "",
     });
   };
 

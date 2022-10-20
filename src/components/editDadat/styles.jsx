@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const DadatBox = styled.div`
-  max-width: 1500px;
-  width: 85%;
+  max-width: inherit;
+  width: 100%;
   margin: auto;
 
   min-width: 340px;
   height: 530px;
-  transform: ${({ isUp }) => `translateY(${isUp ? 0 : 600}px)`};
+  transform: ${({ isUp }) => `translateX(${isUp ? 0 : 1200}px)`};
   transition: transform 500ms ease-in-out;
   /* position: absolute; */
-  bottom: 0;
+  /* bottom: 0; */
+  /* top: 1100px; */
 `;
 export const Title = styled.div`
   font-size: 20px;

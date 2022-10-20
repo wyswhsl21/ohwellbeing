@@ -113,7 +113,6 @@ const ohsikSlice = createSlice({
       const newOhwell = state.ohwells.filter(
         (item) => item.id !== action.payload
       );
-
       console.log("fulfilled 상태", state, action);
 
       state.ohwells = newOhwell;
