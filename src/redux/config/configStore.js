@@ -14,6 +14,7 @@ const store = configureStore({
     ohsiks: ohsiks,
     dadat: dadat,
   },
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export default store;
