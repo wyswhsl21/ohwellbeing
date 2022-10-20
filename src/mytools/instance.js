@@ -20,8 +20,6 @@ export const dadatApi = {
   postDadat: (dadat) => instance.post("/dadats", dadat),
   deleteDadat: (dadatId) => instance.delete(`/dadats/${dadatId}`),
 
-  // 주소를 보내줌 -> 백엔드 라우터에서 주소를 받아준다
-  // 바꿀 새로운 데이터를 보내주어야 한다(두번째 인자로 보내줌)
   patchDadat: (dadatId, edit) =>
     instance.patch(`/dadats/${dadatId}`, { memo: edit }),
 };

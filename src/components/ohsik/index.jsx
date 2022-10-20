@@ -1,20 +1,30 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD:src/components/ohsik.jsx
 import styled from "styled-components";
 import useOhwell from "../hooks/useOhwell";
 import { ohwellApi } from "../mytools/instance";
 import { __addOhwell } from "../redux/modules/ohsikSlice";
+=======
+import useOhwell from "../../hooks/useOhwell";
+import { __addOhwell } from "../../redux/modules/ohsikSlice";
+import { Container, SedForm, ButtonDiv, ContentBox } from "./styles";
+>>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx
 
 const Ohsik = () => {
   //value 정리
   const [value, onChangehandler] = useOhwell();
+<<<<<<< HEAD:src/components/ohsik.jsx
   const {value,setValue}=useState()
   const [memo,setTitle]=useState()
   const [nickname,setTitle]=useState()
   const [titme,setTitle]=useState()
  
   console.log(value);
+=======
+
+>>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx
   //hook 정리
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -81,9 +91,15 @@ setTitle(event.target.value)
               name="time"
             >
               <option>선택</option>
+<<<<<<< HEAD:src/components/ohsik.jsx
               <option>아침</option>
               <option>점심</option>
               <option>저녁</option>
+=======
+              <option>아침 🌞</option>
+              <option>점심 🌈</option>
+              <option>저녁 🌃</option>
+>>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx
             </select>
           </div>
         </div>
@@ -113,6 +129,7 @@ setTitle(event.target.value)
 };
 
 export default Ohsik;
+<<<<<<< HEAD:src/components/ohsik.jsx
 
 const Container = styled.div`
   border: 1px solid none;
@@ -162,3 +179,5 @@ const SelectBox = styled.div`
   width: 450px;
   height: 50px;
 `;
+=======
+>>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx

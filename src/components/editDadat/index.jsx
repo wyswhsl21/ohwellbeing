@@ -11,15 +11,18 @@ const EditDadat = ({ ohwellId }) => {
   // 설렉터
   const [up, setUp] = useState(false);
   const globaldadat = useSelector((state) => state.dadat.dadats);
+
+  console.log(globaldadat);
+  // 설렉터 중  prop으로 받아온 값과 비교해 필요한 정보만 filter해주기 (알맞은 게시물에 알맞은 댓글)
   const newglobaldadat = globaldadat.filter((gdadat) => {
     console.log(gdadat.ohwellId, ohwellId);
     return gdadat.ohwellId === Number(ohwellId);
   });
-  console.log(newglobaldadat);
-  // 디스페치
-  const dispatch = useDispatch();
-  // 훅
+
+  // hooks
   const [dadat, setDadat, dadatChangeHandler] = useInput();
+  const [isUp, setIsUp] = useState(false);
+  const dispatch = useDispatch();
 
   // 유즈이펙트
   useEffect(() => {
@@ -44,10 +47,18 @@ const EditDadat = ({ ohwellId }) => {
 
   return (
     <>
-      <DadatBox>
+      <Title>
         <hr />
-        <h3>눌러서댓글보기</h3>
+        <div
+          onClick={() => {
+            setIsUp((pre) => !pre);
+          }}
+        >
+          {isUp ? "😶‍🌫️ 댓글숨기기" : "👀 눌러서댓글보기"}
+        </div>
         <hr />
+      </Title>
+      <DadatBox isUp={isUp}>
         <CommentBox
           onSubmit={(e) => {
             e.preventDefault();
