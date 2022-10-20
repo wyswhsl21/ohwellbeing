@@ -4,12 +4,19 @@ import useInput from "../../hooks/useInput";
 
 import { __getDadat, __postDadat } from "../../redux/modules/dadatSlice";
 import Comment from "../comment";
-import { CommentBox, Dadat, DadatBox, NewComment, NickName } from "./styles";
+import {
+  CommentBox,
+  Dadat,
+  DadatBox,
+  NewComment,
+  NickName,
+  Title,
+} from "./styles";
 
 const EditDadat = ({ ohwellId }) => {
   console.log(ohwellId);
   // 설렉터
-  const [up, setUp] = useState(false);
+
   const globaldadat = useSelector((state) => state.dadat.dadats);
 
   console.log(globaldadat);

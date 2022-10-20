@@ -48,16 +48,16 @@ export const CommentBox = styled.form`
   }
 `;
 
-export const NewComment = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 30px auto 80px auto;
-  div {
-    border: 1px solid gray;
-    margin: 10px;
-  }
-`;
+// export const NewComment = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   margin: 30px auto 80px auto;
+//   div {
+//     border: 1px solid gray;
+//     margin: 10px;
+//   }
+// `;
 export const NickName = styled.div`
   input {
     margin-left: 8px;

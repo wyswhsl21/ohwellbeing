@@ -1,30 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD:src/components/ohsik.jsx
-import styled from "styled-components";
-import useOhwell from "../hooks/useOhwell";
-import { ohwellApi } from "../mytools/instance";
-import { __addOhwell } from "../redux/modules/ohsikSlice";
-=======
+
 import useOhwell from "../../hooks/useOhwell";
 import { __addOhwell } from "../../redux/modules/ohsikSlice";
 import { Container, SedForm, ButtonDiv, ContentBox } from "./styles";
->>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx
 
 const Ohsik = () => {
   //value 정리
   const [value, onChangehandler] = useOhwell();
-<<<<<<< HEAD:src/components/ohsik.jsx
-  const {value,setValue}=useState()
-  const [memo,setTitle]=useState()
-  const [nickname,setTitle]=useState()
-  const [titme,setTitle]=useState()
- 
-  console.log(value);
-=======
 
->>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx
   //hook 정리
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,18 +29,6 @@ const Ohsik = () => {
     dispatch(__addOhwell(value));
     navigate("/alldat");
   };
-  const onTitleChangeHandler=(event)=>{
-setTitle(event.target.value)
-  }
-  const onTitleChangeHandler=(event)=>{
-setTitle(event.target.value)
-  }
-  const onTitleChangeHandler=(event)=>{
-setTitle(event.target.value)
-  }
-  const onTitleChangeHandler=(event)=>{
-setTitle(event.target.value)
-  }
 
   return (
     <Container>
@@ -91,15 +64,9 @@ setTitle(event.target.value)
               name="time"
             >
               <option>선택</option>
-<<<<<<< HEAD:src/components/ohsik.jsx
-              <option>아침</option>
-              <option>점심</option>
-              <option>저녁</option>
-=======
               <option>아침 🌞</option>
               <option>점심 🌈</option>
               <option>저녁 🌃</option>
->>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx
             </select>
           </div>
         </div>
@@ -129,55 +96,3 @@ setTitle(event.target.value)
 };
 
 export default Ohsik;
-<<<<<<< HEAD:src/components/ohsik.jsx
-
-const Container = styled.div`
-  border: 1px solid none;
-  height: 800px;
-`;
-
-const SedForm = styled.div`
-  border: 5px solid #e8f0fe;
-  margin: 30px auto;
-  max-width: 1000px;
-  width: 90%;
-  height: 500px;
-  padding-left: 30px;
-  input {
-    border-radius: 20px;
-    outline: darkblue;
-    height: 30px;
-    border: none;
-    background-color: #e8f0fe;
-  }
-`;
-const ButtonDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  button {
-    width: 960px;
-    height: 40px;
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    box-shadow: 0 0 0.5em 0 gray;
-    transition: background-color, 5s;
-
-    &:hover {
-      background-color: #1667bd36;
-    }
-  }
-`;
-const ContentBox = styled.div`
-  input {
-    width: 600px;
-    height: 150px;
-  }
-`;
-const SelectBox = styled.div`
-  width: 450px;
-  height: 50px;
-`;
-=======
->>>>>>> 8732b483837699220d98d3860243033dd2b478eb:src/components/ohsik/index.jsx
