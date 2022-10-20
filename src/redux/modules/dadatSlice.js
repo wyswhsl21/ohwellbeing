@@ -49,6 +49,7 @@ export const __updateDadat = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { newDadat, newDadatId } = payload;
+      console.log(newDadat, newDadatId);
       //  인스턴스에서 만들어준 선서와 같게 넣어주어야함
       await dadatApi.patchDadat(newDadatId, newDadat); // 서버한테 보낸상태
       // 위에까지가 데이터베이스를 바꾼 식
@@ -110,7 +111,7 @@ export const dadatSlice = createSlice({
     },
     [__deleteDadat.fulfilled]: (state, action) => {
       state.isLoading = false;
-      let deldadat = state.dadats.filter(
+      const deldadat = state.dadats.filter(
         (dadat) => action.payload !== dadat.id
       );
       state.dadats = deldadat;

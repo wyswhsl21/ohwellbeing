@@ -10,7 +10,7 @@
     {
       "title": "123",
       "nickname": "테스트",
-      "memo": "123",
+      "memo": "123456",
       "time": "점심",
       "id": 2
     }
@@ -51,24 +51,6 @@
       "memo": "",
       "ohwellId": 1,
       "id": 9
-    },
-    {
-      "nickname": "2번입니다!",
-      "memo": "",
-      "ohwellId": 2,
-      "id": 10
-    },
-    {
-      "nickname": "2번",
-      "memo": "댓글!",
-      "ohwellId": 2,
-      "id": 11
-    },
-    {
-      "nickname": "ㄴㄴㄴ",
-      "memo": "우오아예!",
-      "ohwellId": 2,
-      "id": 12
     }
   ]
 }

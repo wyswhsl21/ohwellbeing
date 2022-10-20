@@ -13,7 +13,7 @@ const MoreInfo = () => {
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(false);
 
-  const [update, setUpdate] = useState(ohwell.memo);
+  const [update, setUpdate] = useState(ohwell?.memo);
   console.log(update);
 
   const onClickUpdateHandler = () => {

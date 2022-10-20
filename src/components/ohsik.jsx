@@ -9,7 +9,11 @@ import { __addOhwell } from "../redux/modules/ohsikSlice";
 const Ohsik = () => {
   //value 정리
   const [value, onChangehandler] = useOhwell();
-  const [time, setTime] = useState("");
+  const {value,setValue}=useState()
+  const [memo,setTitle]=useState()
+  const [nickname,setTitle]=useState()
+  const [titme,setTitle]=useState()
+ 
   console.log(value);
   //hook 정리
   const navigate = useNavigate();
@@ -30,6 +34,18 @@ const Ohsik = () => {
     dispatch(__addOhwell(value));
     navigate("/alldat");
   };
+  const onTitleChangeHandler=(event)=>{
+setTitle(event.target.value)
+  }
+  const onTitleChangeHandler=(event)=>{
+setTitle(event.target.value)
+  }
+  const onTitleChangeHandler=(event)=>{
+setTitle(event.target.value)
+  }
+  const onTitleChangeHandler=(event)=>{
+setTitle(event.target.value)
+  }
 
   return (
     <Container>
